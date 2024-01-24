@@ -1,6 +1,6 @@
 package com.doggo.dogadopt.retrofit;
 
-import com.doggo.dogadopt.model.User;
+import com.doggo.dogadopt.model.Legacy;
 
 import java.util.List;
 
@@ -9,12 +9,13 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface UserApi {
+public interface LegacyApi {
     @GET("/")
-    Call <List<User>> getAllUsers();
+    Call <List<Legacy>> getAllUsers();
 
-    @POST("/add-user")
-    Call<User> save (@Body User user);
+    @POST("/add-legacy")
+    Call<Legacy> save (@Body Legacy legacy);
+
 
 
 

@@ -2,7 +2,7 @@ package com.doggo.dogadopt.model;
 
 import java.util.Objects;
 
-public class User {
+public class Legacy {
 
 
     private int id;
@@ -10,10 +10,10 @@ public class User {
     private String username;
     private String email;
 
-    public User() {
+    public Legacy() {
     }
 
-    public User(String username, String email) {
+    public Legacy(String username, String email) {
         this.username = username;
         this.email = email;
     }
@@ -62,7 +62,7 @@ public class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Legacy other = (Legacy) obj;
         if (this.email != other.email) {
             return false;
         }
@@ -74,7 +74,7 @@ public class User {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
+        final StringBuilder sb = new StringBuilder("Legacy{");
         sb.append("id=").append(id);
         sb.append(", username='").append(username).append('\'');
         sb.append(", email=").append(email);
