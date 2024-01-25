@@ -17,6 +17,7 @@ import retrofit2.Response;
 
 public class RequestProcessor {
 
+    Account accountData = new Account();
     RetrofitService retrofitService = new RetrofitService();
     AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
     DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
@@ -105,25 +106,28 @@ public class RequestProcessor {
 
     public Account AccountRead(int ID){
 
-        final Account[] accountData = {new Account()};
-        accountApi.getAccount(ID).enqueue(new Callback<List<Account>>() {
+        Call<Account> call = accountApi.getAccount(ID);
+
+        call.enqueue(new Callback<Account>() {
             @Override
-            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
-
-                    if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()){
-                        accountData[0] = response.body().getFirstName();
-                        Log.d("AccountData","test");
-                    }
-
+            public void onResponse(Call<Account> call, Response<Account> response) {
+//                accountData.setMyId(response.body().getMyId());
+//                accountData.setRole(response.body().getRole());
+//                accountData.setPassword(response.body().getPassword());
+//                accountData.setUsername(response.body().getUsername().toString());
+//                accountData.setMyAddress(response.body().getMyAddress());
+//                accountData.setFirstName(response.body().getFirstName());
+//                accountData.setLastName(response.body().getLastName());
+                accountData = response.body();
             }
 
             @Override
-            public void onFailure(Call<List<Account>> call, Throwable t) {
+            public void onFailure(Call<Account> call, Throwable t) {
 
             }
         });
 
-        return accountData[0];
+        return accountData;
     }
 
 }

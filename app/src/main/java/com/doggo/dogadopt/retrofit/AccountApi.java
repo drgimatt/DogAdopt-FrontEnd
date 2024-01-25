@@ -16,7 +16,7 @@ public interface AccountApi {
     Call <List<Account>> getAllAccounts();
 
     @GET("/api/show-account/{id}")
-    Call <List<Account>> getAccount(@Path("id") int id);
+    Call <Account> getAccount(@Path("id") int id);
 
     @POST("/api/create-account")
     Call<Account> createAccount(@Body Account account);

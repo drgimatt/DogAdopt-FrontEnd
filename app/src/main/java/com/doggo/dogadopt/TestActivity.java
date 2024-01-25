@@ -6,12 +6,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.doggo.dogadopt.model.Account;
+import com.doggo.dogadopt.retrofit.AccountApi;
 import com.doggo.dogadopt.retrofit.RequestProcessor;
+import com.doggo.dogadopt.retrofit.RetrofitService;
 import com.escandor.dogadopt.R;
 
 public class TestActivity extends AppCompatActivity {
 
-
+    Account account = new Account();
     TextView dogName;
     TextView dogBreed;
 
@@ -31,6 +33,7 @@ public class TestActivity extends AppCompatActivity {
         RequestProcessor request = new RequestProcessor();
 
         Account account = request.AccountRead(92);
+
 
         dogName.setText(account.getFirstName());
         dogBreed.setText(account.getUsername());
