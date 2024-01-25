@@ -1,9 +1,12 @@
 package com.doggo.dogadopt.retrofit;
 
+import android.util.Log;
+
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -98,6 +101,29 @@ public class RequestProcessor {
             public void onFailure(Call<Account> call, Throwable t) {
             }
         });
+    }
+
+    public Account AccountRead(int ID){
+
+        final Account[] accountData = {new Account()};
+        accountApi.getAccount(ID).enqueue(new Callback<List<Account>>() {
+            @Override
+            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
+
+                    if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()){
+                        accountData[0] = response.body().getFirstName();
+                        Log.d("AccountData","test");
+                    }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Account>> call, Throwable t) {
+
+            }
+        });
+
+        return accountData[0];
     }
 
 }

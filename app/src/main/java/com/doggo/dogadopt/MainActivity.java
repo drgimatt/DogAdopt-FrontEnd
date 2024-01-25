@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText input_username;
     EditText input_email;
     Button btn_Add;
+    Button btn_chg;
     byte[] imageInByte;
     Bitmap bitmap;
     int SELECT_PICTURE = 200;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             input_username = findViewById(R.id.input_username);
             input_email = findViewById(R.id.input_email);
             btn_Add = findViewById(R.id.btn_Add);
+            btn_chg = findViewById(R.id.changeButton);
             SelectImage = findViewById(R.id.uploadImage);
             imagePrev = findViewById(R.id.previewImage);
 
@@ -89,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
             });
 
+
+            btn_chg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, TestActivity.class));
+                }
+            });
 
             btn_Add.setOnClickListener(view -> {
                     uploadForm();
