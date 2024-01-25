@@ -26,10 +26,8 @@ public interface DogApi {
 
     @Multipart
     @POST("/api/add-dog")
-    //Call<Dog> addDogSubmit(@Body Dog dog);
-
     Call<Dog> addDogSubmit(
-                     @Part("photo") MultipartBody.Part photo,
+                     @Part MultipartBody.Part photo,
                      @Part("name") RequestBody name,
                      @Part("breed") RequestBody breed,
                      @Part("age") RequestBody age,
@@ -38,9 +36,10 @@ public interface DogApi {
                      @Part("status") RequestBody status,
                      @Part("gender") RequestBody gender);
 
+    @Multipart
     @PUT("/api/update-dog/{id}")
-    //Call<Dog> updateDog(@Path("id") int id, @Body Dog dog);
-    Call<Dog> updateDog(@Path("id") Long id,
+    Call<Dog> updateDog(
+                     @Path("id") Long id,
                      @Part("photo") MultipartBody.Part photo,
                      @Part("name") RequestBody name,
                      @Part("breed") RequestBody breed,
