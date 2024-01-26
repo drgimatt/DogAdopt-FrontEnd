@@ -13,7 +13,7 @@ import retrofit2.http.Path;
 public interface AccountApi {
 
     @GET("/api/accounts")
-    Call <List<Account>> getAllAccounts();
+    Call <List<Account>> showAllAccount();
 
     @GET("/api/show-account/{id}")
     Call <Account> getAccount(@Path("id") int id);

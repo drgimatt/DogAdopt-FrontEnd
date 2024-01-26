@@ -1,6 +1,7 @@
 package com.doggo.dogadopt;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,12 +32,13 @@ public class TestActivity extends AppCompatActivity {
         dogBreed = findViewById(R.id.DogBreedDisplay);
 
         RequestProcessor request = new RequestProcessor();
+        Account acc = request.AccountRead(1);
 
-        Account account = request.AccountRead(92);
 
+        Log.i("TestActivity","May nakukuha siya: "+acc);
 
-        dogName.setText(account.getFirstName());
-        dogBreed.setText(account.getUsername());
+        dogName.setText(acc.getFirstName());
+        dogBreed.setText(acc.getUsername());
 
 
 

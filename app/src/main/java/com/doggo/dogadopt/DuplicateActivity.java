@@ -1,6 +1,5 @@
 package com.doggo.dogadopt;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,13 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.doggo.dogadopt.retrofit.RequestProcessor;
 import com.escandor.dogadopt.R;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class DuplicateActivity extends AppCompatActivity {
 
     Button SelectImage;
     ImageView imagePrev;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_startup);
         initializeComponents();
 
     }
@@ -75,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
         private void initializeComponents() {
 
 
-            input_username = findViewById(R.id.input_username);
-            input_email = findViewById(R.id.input_email);
-            btn_Add = findViewById(R.id.btn_Add);
-            btn_chg = findViewById(R.id.changeButton);
-            SelectImage = findViewById(R.id.uploadImage);
-            imagePrev = findViewById(R.id.previewImage);
+//            input_username = findViewById(R.id.input_username);
+//            input_email = findViewById(R.id.input_email);
+//            btn_Add = findViewById(R.id.btn_Add);
+//            btn_chg = findViewById(R.id.changeButton);
+//            SelectImage = findViewById(R.id.uploadImage);
+//            imagePrev = findViewById(R.id.previewImage);
 
             SelectImage.setOnClickListener(new View.OnClickListener() {
 
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             btn_chg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, TestActivity.class));
+                    startActivity(new Intent(DuplicateActivity.this, TestActivity.class));
                 }
             });
 

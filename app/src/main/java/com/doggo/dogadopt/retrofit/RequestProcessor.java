@@ -6,7 +6,9 @@ import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -18,6 +20,7 @@ import retrofit2.Response;
 public class RequestProcessor {
 
     Account accountData = new Account();
+    List<Account> accountList = new ArrayList<>();
     RetrofitService retrofitService = new RetrofitService();
     AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
     DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
@@ -104,30 +107,56 @@ public class RequestProcessor {
         });
     }
 
-    public Account AccountRead(int ID){
+    public List<Account> AccountReadAll(){
+        Log.i("Success", "Umaabot dito");
+        Call<List<Account>> call = accountApi.showAllAccount();
+        Log.i("Success", "himala");
+        call.enqueue(new Callback<List<Account>>() {
+            @Override
+            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
 
-        Call<Account> call = accountApi.getAccount(ID);
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.i("Success", "Good ten " + response.body());
+                    accountList = response.body();
+                        //Log.i("Success", "Good ten " + response.body());
 
+                } else {
+                    Log.i("Success", "Not Good ten " + response.body());
+                }
+
+            }
+            @Override
+            public void onFailure(Call<List<Account>> call, Throwable t) {
+
+            }
+        });
+        Log.i("AccountData before return", "eto yung data " + accountData);
+        return accountList;
+    }
+
+    public Account AccountRead(int id){
+        Call<Account> call = accountApi.getAccount(id);
         call.enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-//                accountData.setMyId(response.body().getMyId());
-//                accountData.setRole(response.body().getRole());
-//                accountData.setPassword(response.body().getPassword());
-//                accountData.setUsername(response.body().getUsername().toString());
-//                accountData.setMyAddress(response.body().getMyAddress());
-//                accountData.setFirstName(response.body().getFirstName());
-//                accountData.setLastName(response.body().getLastName());
-                accountData = response.body();
-            }
 
+                if (response.isSuccessful() && response.body() != null) {
+                    //accountList = response.getBody.as(accountData.class);
+                    Log.i("Success", "Good ten " + response.body());
+
+                } else {
+                    Log.i("Success", "Not Good ten " + response.body());
+                }
+
+            }
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
 
             }
         });
+        Log.i("AccountData before return", "eto yung data " + accountData);
 
-        return accountData;
+        return null;
     }
 
 }
