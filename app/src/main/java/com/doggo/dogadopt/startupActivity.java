@@ -67,10 +67,4 @@ public class startupActivity extends AppCompatActivity {
 
 
         }
-
-
-
-
-
-
 }
