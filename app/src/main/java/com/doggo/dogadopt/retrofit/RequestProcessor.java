@@ -37,14 +37,14 @@ public class RequestProcessor {
 
         MultipartBody.Part imagePart = MultipartBody.Part.createFormData("photo","file",imageBody);
         dogApi.addDogSubmit(imagePart,nameBody,breedBody,ageBody,doaBody,personalityBody,statusBody,genderBody).enqueue(new Callback<Dog>() {
-                @Override
-                public void onResponse(Call<Dog> call, Response<Dog> response) {
-                }
+            @Override
+            public void onResponse(Call<Dog> call, Response<Dog> response) {
+            }
 
-                @Override
-                public void onFailure(Call<Dog> call, Throwable t) {
-                }
-            });
+            @Override
+            public void onFailure(Call<Dog> call, Throwable t) {
+            }
+        });
     }
 
     public void DogUpdate(int ID, byte[] photoBytes, String name, String breed, String age, String doa, String personality, String status, String gender){
@@ -118,7 +118,8 @@ public class RequestProcessor {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.i("Success", "Good ten " + response.body());
                     accountList = response.body();
-                        //Log.i("Success", "Good ten " + response.body());
+
+                    //Log.i("Success", "Good ten " + response.body());
 
                 } else {
                     Log.i("Success", "Not Good ten " + response.body());
@@ -140,8 +141,15 @@ public class RequestProcessor {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
 
-                if (response.isSuccessful() && response.body() != null) {
-                    //accountList = response.getBody.as(accountData.class);
+                if (response.isSuccessful()) {
+                    Account holder = (Account) response.body();
+                    accountData.setMyId(holder.getMyId());
+                    accountData.setFirstName(holder.getFirstName());
+                    accountData.setLastName(holder.getLastName());
+                    accountData.setMyAddress(holder.getMyAddress());
+                    accountData.setUsername(holder.getUsername());
+                    accountData.setPassword(holder.getPassword());
+                    accountData.setRole(holder.getRole());
                     Log.i("Success", "Good ten " + response.body());
 
                 } else {
@@ -156,7 +164,7 @@ public class RequestProcessor {
         });
         Log.i("AccountData before return", "eto yung data " + accountData);
 
-        return null;
+        return accountData;
     }
 
 }

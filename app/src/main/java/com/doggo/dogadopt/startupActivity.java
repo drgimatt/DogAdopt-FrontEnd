@@ -21,7 +21,7 @@ public class startupActivity extends AppCompatActivity {
     EditText password;
     Button login;
     Button register;
-    RequestProcessor requestProcessor;
+    RequestProcessor requestProcessor = new RequestProcessor();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +53,10 @@ public class startupActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    List<Account> lst = null;
-                    requestProcessor.AccountReadAll(); // problematic line
-                    //lst = requestProcessor.AccountReadAll();
-                    Toast.makeText(startupActivity.this,"You have pressed the login button.", Toast.LENGTH_SHORT).show();
+                    Account lst = null;
+                    //requestProcessor.AccountReadAll(); // problematic line
+                    lst = requestProcessor.AccountRead(28);
+                    Toast.makeText(startupActivity.this,"You have pressed the login button." + " Firstname: " + lst.getFirstName(), Toast.LENGTH_SHORT).show();
 
 //                    for (Account account : lst){
 //                        if (account.getUsername() == username.getText().toString()){
