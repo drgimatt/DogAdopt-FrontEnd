@@ -28,6 +28,16 @@ public class startupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_startup);
         initializeComponents();
 
+        Button buttonOpenActivity = findViewById(R.id.login_button);
+
+        buttonOpenActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // new XML layout
+                setContentView(R.layout.activity_dash_admin);
+            }
+        });
+
     }
 
 

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/const_scroll"
+        android:layout_width="395dp"
+        android:layout_height="784dp"
+        android:layout_marginTop="355dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="388dp"
+            android:layout_height="736dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingLeft="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp">
+
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="1.8in"
+                        android:layout_marginBottom="3dp"
+                        android:text="EDIT" />
+
+                    <ImageView
+                        android:layout_width="1in"
+                        android:layout_height="1in"
+                        android:layout_margin="5dp"
+                        android:background="@color/white"
+                        android:elevation="3dp"
+                        android:src="@drawable/dog2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="101dp"
+                        android:paddingLeft="1.2in"
+                        android:paddingTop="6dp"
+                        android:text="Name: Milo \nBreed: Aspin\nStatus: Adopted"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingLeft="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp">
+
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="1.8in"
+                        android:layout_marginBottom="3dp"
+                        android:text="EDIT" />
+
+                    <ImageView
+                        android:layout_width="1in"
+                        android:layout_height="1in"
+                        android:layout_margin="5dp"
+                        android:background="@color/white"
+                        android:elevation="3dp"
+                        android:src="@drawable/dog2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="101dp"
+                        android:paddingLeft="1.2in"
+                        android:paddingTop="6dp"
+                        android:text="Name: Milo \nBreed: Aspin\nStatus: Adopted"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingLeft="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp">
+
+                    <Button
+                        android:id="@+id/button8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="1.8in"
+                        android:layout_marginBottom="3dp"
+                        android:text="EDIT" />
+
+                    <ImageView
+                        android:layout_width="1in"
+                        android:layout_height="1in"
+                        android:layout_margin="5dp"
+                        android:background="@color/white"
+                        android:elevation="3dp"
+                        android:src="@drawable/dog2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="101dp"
+                        android:paddingLeft="1.2in"
+                        android:paddingTop="6dp"
+                        android:text="Name: Milo \nBreed: Aspin\nStatus: Adopted"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingLeft="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp">
+
+                    <Button
+                        android:id="@+id/button9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="1.8in"
+                        android:layout_marginBottom="3dp"
+                        android:text="EDIT" />
+
+                    <ImageView
+                        android:layout_width="1in"
+                        android:layout_height="1in"
+                        android:layout_margin="5dp"
+                        android:background="@color/white"
+                        android:elevation="3dp"
+                        android:src="@drawable/dog2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="101dp"
+                        android:paddingLeft="1.2in"
+                        android:paddingTop="6dp"
+                        android:text="Name: Milo \nBreed: Aspin\nStatus: Adopted"
+                        android:textSize="16sp" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="93dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="281dp"
+        android:layout_marginEnd="29dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/add_record_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/btn_bg"
+            android:text="ADD"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="195dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="277dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="221dp"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif-medium"
+                android:text="Dog Adopt Records"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="429dp"
+        android:layout_height="252dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@drawable/top_bg_dash">
+
+                <LinearLayout
+                    android:layout_width="426dp"
+                    android:layout_height="246dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="234dp"
+                    android:layout_height="235dp"
+                    android:src="@drawable/dog1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="188dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="87dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Find your new"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="121dp"
+                    android:layout_marginEnd="53dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="best friend!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="128dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="264dp"
+                    android:layout_marginTop="180dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button
+                        android:id="@+id/login_button_dash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/design_default_color_secondary_variant"
+                        android:text="LOGIN"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
