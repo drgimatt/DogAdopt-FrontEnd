@@ -32,13 +32,13 @@ public class TestActivity extends AppCompatActivity {
         dogBreed = findViewById(R.id.DogBreedDisplay);
 
         RequestProcessor request = new RequestProcessor();
-        Account acc = request.AccountRead(1);
+        request.AccountRead(1);
 
 
-        Log.i("TestActivity","May nakukuha siya: "+acc);
+        //Log.i("TestActivity","May nakukuha siya: "+acc);
 
-        dogName.setText(acc.getFirstName());
-        dogBreed.setText(acc.getUsername());
+        //dogName.setText(acc.getFirstName());
+        //dogBreed.setText(acc.getUsername());
 
 
 

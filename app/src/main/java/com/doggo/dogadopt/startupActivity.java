@@ -2,6 +2,7 @@ package com.doggo.dogadopt;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,22 +22,21 @@ public class startupActivity extends AppCompatActivity {
     EditText password;
     Button login;
     Button register;
-    RequestProcessor requestProcessor = new RequestProcessor();
+    RequestProcessor requestProcessor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
         initializeComponents();
-
         Button buttonOpenActivity = findViewById(R.id.login_button);
 
-        buttonOpenActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // new XML layout
-                setContentView(R.layout.activity_dash_admin);
-            }
-        });
+//        buttonOpenActivity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // new XML layout
+//                setContentView(R.layout.activity_dash_admin);
+//            }
+//        });
 
     }
 
@@ -52,17 +52,20 @@ public class startupActivity extends AppCompatActivity {
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    requestProcessor = new RequestProcessor();
 
-                    Account lst = null;
-                    //requestProcessor.AccountReadAll(); // problematic line
-                    lst = requestProcessor.AccountRead(28);
-                    Toast.makeText(startupActivity.this,"You have pressed the login button." + " Firstname: " + lst.getFirstName(), Toast.LENGTH_SHORT).show();
+                    requestProcessor.AccountRead(1);
+                    requestProcessor.setCbs(new CallBack() {
+                        @Override
+                        public void returnResult(Object obj) {
+                            Account lst = (Account) obj;
+                            System.out.println("lumabas ka");
+                            Toast.makeText(startupActivity.this,"You have pressed the login button." + " Firstname: " + lst.getFirstName(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-//                    for (Account account : lst){
-//                        if (account.getUsername() == username.getText().toString()){
-//                            Toast.makeText(startupActivity.this,"Tumama siya", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
+                    //requestProcessor.AccountRead(1);
+
 
 
                 }

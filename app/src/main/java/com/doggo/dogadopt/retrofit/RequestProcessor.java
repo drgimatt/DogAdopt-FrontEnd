@@ -2,6 +2,7 @@ package com.doggo.dogadopt.retrofit;
 
 import android.util.Log;
 
+import com.doggo.dogadopt.CallBack;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 
@@ -24,6 +25,8 @@ public class RequestProcessor {
     RetrofitService retrofitService = new RetrofitService();
     AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
     DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
+
+    CallBack cbs;
 
     public void DogAdd(byte[] photoBytes, String name, String breed, String age, String doa, String personality, String status, String gender){
         RequestBody imageBody = RequestBody.create(MediaType.parse("image*/"),photoBytes);
@@ -107,17 +110,16 @@ public class RequestProcessor {
         });
     }
 
-    public List<Account> AccountReadAll(){
-        Log.i("Success", "Umaabot dito");
+    public void AccountReadAll(){
         Call<List<Account>> call = accountApi.showAllAccount();
-        Log.i("Success", "himala");
         call.enqueue(new Callback<List<Account>>() {
             @Override
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.i("Success", "Good ten " + response.body());
+                    //Log.i("Success", "Good ten " + response.body());
                     accountList = response.body();
+                    cbs.returnResult(accountList);
 
                     //Log.i("Success", "Good ten " + response.body());
 
@@ -131,17 +133,17 @@ public class RequestProcessor {
 
             }
         });
-        Log.i("AccountData before return", "eto yung data " + accountData);
-        return accountList;
+        //Log.i("AccountData before return", "eto yung data " + accountData);
+        //return accountList;
     }
 
-    public Account AccountRead(int id){
+    public void AccountRead(int id){
         Call<Account> call = accountApi.getAccount(id);
         call.enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
 
-                if (response.isSuccessful()) {
+
                     Account holder = (Account) response.body();
                     accountData.setMyId(holder.getMyId());
                     accountData.setFirstName(holder.getFirstName());
@@ -150,21 +152,25 @@ public class RequestProcessor {
                     accountData.setUsername(holder.getUsername());
                     accountData.setPassword(holder.getPassword());
                     accountData.setRole(holder.getRole());
+                    cbs.returnResult(accountData);
                     Log.i("Success", "Good ten " + response.body());
 
-                } else {
-                    Log.i("Success", "Not Good ten " + response.body());
-                }
 
             }
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
 
+                cbs.returnResult(accountData);
             }
         });
-        Log.i("AccountData before return", "eto yung data " + accountData);
 
-        return accountData;
     }
 
+    public CallBack getCbs() {
+        return cbs;
+    }
+
+    public void setCbs(CallBack cbs) {
+        this.cbs = cbs;
+    }
 }
