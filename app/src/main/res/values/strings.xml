@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">DogAdopt</string>
+
+    <string-array name="dogStatusSpin">
+        <item>AVAILABLE</item>
+        <item>PROCESSING</item>
+        <item>ADOPTED</item>
+    </string-array>
+
+    <string-array name="dogGenderSpin">
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
 </resources>
