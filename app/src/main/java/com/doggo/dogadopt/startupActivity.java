@@ -63,7 +63,7 @@ public class startupActivity extends AppCompatActivity {
                             Toast.makeText(startupActivity.this,"You have pressed the login button." + " Firstname: " + lst.getFirstName(), Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    setContentView(R.layout.activity_dash_admin);
                     //requestProcessor.AccountRead(1);
 
 
