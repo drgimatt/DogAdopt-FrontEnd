@@ -117,24 +117,18 @@ public class RequestProcessor {
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
-                    //Log.i("Success", "Good ten " + response.body());
+
                     accountList = response.body();
                     cbs.returnResult(accountList);
 
-                    //Log.i("Success", "Good ten " + response.body());
 
-                } else {
-                    Log.i("Success", "Not Good ten " + response.body());
                 }
-
             }
             @Override
             public void onFailure(Call<List<Account>> call, Throwable t) {
 
             }
         });
-        //Log.i("AccountData before return", "eto yung data " + accountData);
-        //return accountList;
     }
 
     public void AccountRead(int id){

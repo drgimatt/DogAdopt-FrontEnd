@@ -52,18 +52,18 @@ public class startupActivity extends AppCompatActivity {
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    requestProcessor = new RequestProcessor();
-
-                    requestProcessor.AccountRead(1);
-                    requestProcessor.setCbs(new CallBack() {
-                        @Override
-                        public void returnResult(Object obj) {
-                            Account lst = (Account) obj;
-                            System.out.println("lumabas ka");
-                            Toast.makeText(startupActivity.this,"You have pressed the login button." + " Firstname: " + lst.getFirstName(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    setContentView(R.layout.activity_dash_admin);
+//                    requestProcessor = new RequestProcessor();
+//
+//                    requestProcessor.AccountRead(1);
+//                    requestProcessor.setCbs(new CallBack() {
+//                        @Override
+//                        public void returnResult(Object obj) {
+//                            Account lst = (Account) obj;
+//                            System.out.println("lumabas ka");
+//
+//                        }
+//                    });
+                    checkAccount(username.getText().toString(),password.getText().toString());
                     //requestProcessor.AccountRead(1);
 
 
@@ -80,4 +80,32 @@ public class startupActivity extends AppCompatActivity {
 
 
         }
+
+        private void checkAccount(String uname, String pssword){
+
+            requestProcessor = new RequestProcessor();
+            requestProcessor.AccountReadAll();
+
+            requestProcessor.setCbs(new CallBack() {
+                @Override
+                public void returnResult(Object obj) {
+                    List<Account> accList = (List<Account>) obj;
+
+                    for (Account acc: accList){
+                        if((acc.getUsername().equals(uname)) && (acc.getPassword().equals(pssword))){
+                            Toast.makeText(startupActivity.this,"You have pressed the login button." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
+                            setContentView(R.layout.activity_dash_admin);
+                        }
+                    }
+
+                }
+            });
+
+
+
+        }
+
+
+
+
 }
