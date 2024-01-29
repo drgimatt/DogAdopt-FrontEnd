@@ -28,15 +28,6 @@ public class startupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
         initializeComponents();
-        Button buttonOpenActivity = findViewById(R.id.login_button);
-
-//        buttonOpenActivity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // new XML layout
-//                setContentView(R.layout.activity_dash_admin);
-//            }
-//        });
 
     }
 
@@ -48,26 +39,14 @@ public class startupActivity extends AppCompatActivity {
             login = findViewById(R.id.login_button);
             register = findViewById(R.id.signup_button);
 
-
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    requestProcessor = new RequestProcessor();
-//
-//                    requestProcessor.AccountRead(1);
-//                    requestProcessor.setCbs(new CallBack() {
-//                        @Override
-//                        public void returnResult(Object obj) {
-//                            Account lst = (Account) obj;
-//                            System.out.println("lumabas ka");
-//
-//                        }
-//                    });
-                    checkAccount(username.getText().toString(),password.getText().toString());
-                    //requestProcessor.AccountRead(1);
-
-
-
+                    if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+                        Toast.makeText(startupActivity.this,"Please enter credentials", Toast.LENGTH_SHORT).show();
+                    } else {
+                        checkAccount(username.getText().toString(),password.getText().toString());
+                    }
                 }
             });
 
@@ -86,6 +65,9 @@ public class startupActivity extends AppCompatActivity {
             requestProcessor = new RequestProcessor();
             requestProcessor.AccountReadAll();
 
+            if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+                Toast.makeText(startupActivity.this,"Please enter credentials", Toast.LENGTH_SHORT).show();
+            } else {
             requestProcessor.setCbs(new CallBack() {
                 @Override
                 public void returnResult(Object obj) {
@@ -93,15 +75,28 @@ public class startupActivity extends AppCompatActivity {
 
                     for (Account acc: accList){
                         if((acc.getUsername().equals(uname)) && (acc.getPassword().equals(pssword))){
-                            Toast.makeText(startupActivity.this,"You have pressed the login button." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-                            setContentView(R.layout.activity_dash_admin);
+                            Account user = acc;
+                            if(user.getRole().equals("ADMIN")){
+                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
+                                setContentView(R.layout.activity_dash_admin);
+                                break;
+                            } else if (user.getRole().equals("USER")){
+                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
+                                setContentView(R.layout.activity_add);
+                                break;
+                            } else {
+                                Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                        } else {
+                            Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                 }
             });
 
-
+            }
 
         }
 

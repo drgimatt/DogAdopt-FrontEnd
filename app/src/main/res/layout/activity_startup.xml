@@ -56,7 +56,8 @@
                 android:id="@+id/passwordField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password" />
+                android:hint="Password"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -81,4 +82,5 @@
             android:backgroundTint="@color/btn_bg"
             android:text="Sign-up" />
     </LinearLayout>
+
 </RelativeLayout>

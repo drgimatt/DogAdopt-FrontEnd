@@ -22,6 +22,7 @@ import java.util.Locale;
 public class addActivity extends AppCompatActivity {
 
     private EditText dogBirthDateEditText;
+    private EditText DogName;
     private Calendar calendar;
 
     @Override
@@ -30,6 +31,7 @@ public class addActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         dogBirthDateEditText = findViewById(R.id.dogDOA);
+        DogName = findViewById(R.id.dogName);
         calendar = Calendar.getInstance();
 
         // Optionally, set an initial date in the EditText
