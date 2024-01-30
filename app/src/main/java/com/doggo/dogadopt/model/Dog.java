@@ -8,7 +8,6 @@ public class Dog {
 
 
     private Long id;
-
     private byte[] photo;
     private String name;
     private String breed;

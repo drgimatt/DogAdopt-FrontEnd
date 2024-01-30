@@ -42,10 +42,12 @@ public class RequestProcessor {
         dogApi.addDogSubmit(imagePart,nameBody,breedBody,ageBody,doaBody,personalityBody,statusBody,genderBody).enqueue(new Callback<Dog>() {
             @Override
             public void onResponse(Call<Dog> call, Response<Dog> response) {
+                Log.i("Success", "Process completed " + response.body());
             }
 
             @Override
             public void onFailure(Call<Dog> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
             }
         });
     }
@@ -64,10 +66,12 @@ public class RequestProcessor {
         dogApi.updateDog((long) ID,imagePart,nameBody,breedBody,ageBody,doaBody,personalityBody,statusBody,genderBody).enqueue(new Callback<Dog>() {
             @Override
             public void onResponse(Call<Dog> call, Response<Dog> response) {
+                Log.i("Success", "Process completed " + response.body());
             }
 
             @Override
             public void onFailure(Call<Dog> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
             }
         });
     }
@@ -83,10 +87,12 @@ public class RequestProcessor {
         accountApi.createAccount(account).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
+                Log.i("Success", "Process completed " + response.body());
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
             }
         });
     }
@@ -102,10 +108,12 @@ public class RequestProcessor {
         accountApi.updateAccount(ID, account).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
+                Log.i("Success", "Process completed " + response.body());
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
             }
         });
     }
@@ -118,15 +126,15 @@ public class RequestProcessor {
 
                 if (response.isSuccessful() && response.body() != null) {
 
+                    Log.i("Success", "Process completed " + response.body());
                     accountList = response.body();
                     cbs.returnResult(accountList);
-
 
                 }
             }
             @Override
             public void onFailure(Call<List<Account>> call, Throwable t) {
-
+                Log.e("Failure","Process not completed " ,t);
             }
         });
     }
@@ -147,13 +155,13 @@ public class RequestProcessor {
                     accountData.setPassword(holder.getPassword());
                     accountData.setRole(holder.getRole());
                     cbs.returnResult(accountData);
-                    Log.i("Success", "Good ten " + response.body());
+                    Log.i("Success", "Process completed " + response.body());
 
 
             }
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-
+                Log.e("Failure","Process not completed " ,t);
                 cbs.returnResult(accountData);
             }
         });

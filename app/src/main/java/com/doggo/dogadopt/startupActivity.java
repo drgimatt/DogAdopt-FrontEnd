@@ -1,6 +1,7 @@
 package com.doggo.dogadopt;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -78,11 +79,13 @@ public class startupActivity extends AppCompatActivity {
                             Account user = acc;
                             if(user.getRole().equals("ADMIN")){
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-                                setContentView(R.layout.activity_dash_admin);
+                                Intent i = new Intent(getApplicationContext(), dashActivity.class);
+                                startActivity(i);
                                 break;
                             } else if (user.getRole().equals("USER")){
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-                                setContentView(R.layout.activity_add);
+                                Intent i = new Intent(getApplicationContext(), addActivity.class);
+                                startActivity(i);
                                 break;
                             } else {
                                 Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();

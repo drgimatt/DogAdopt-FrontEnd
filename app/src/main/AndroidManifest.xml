@@ -26,6 +26,9 @@
         </activity>
         <activity
             android:name="com.doggo.dogadopt.TestActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.dashActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.addActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.DuplicateActivity"></activity>
     </application>
 
 </manifest>
