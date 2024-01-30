@@ -81,11 +81,13 @@ public class startupActivity extends AppCompatActivity {
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), dashActivity.class);
                                 startActivity(i);
+                                finish();
                                 break;
                             } else if (user.getRole().equals("USER")){
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), addActivity.class);
                                 startActivity(i);
+                                finish();
                                 break;
                             } else {
                                 Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();

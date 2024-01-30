@@ -3,6 +3,8 @@ package com.doggo.dogadopt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -24,6 +26,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,7 +81,13 @@ public class addActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                processor.DogAdd((byte[]) null,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+
+                Bitmap bitmap = ((BitmapDrawable) dogPicPreview.getDrawable()).getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageInByte = baos.toByteArray();
+
+                processor.DogAdd(imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
 
             }
         });
@@ -113,7 +122,7 @@ public class addActivity extends AppCompatActivity {
     }
 
     private void updateDateInView() {
-        String myFormat = "MM/dd/yyyy"; // Choose the format you desire
+        String myFormat = "yyyy-MM-dd"; // Choose the format you desire
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         dogDOAEditText.setText(sdf.format(calendar.getTime()));
