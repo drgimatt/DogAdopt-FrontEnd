@@ -1,32 +1,33 @@
 package com.doggo.dogadopt;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.doggo.dogadopt.retrofit.RequestProcessor;
-import com.escandor.dogadopt.R;
-import com.google.android.material.textfield.TextInputEditText;
-
-import android.app.DatePickerDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.doggo.dogadopt.model.Dog;
+import com.doggo.dogadopt.retrofit.RequestProcessor;
+import com.escandor.dogadopt.R;
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class addActivity extends AppCompatActivity {
+public class updateActivity extends AppCompatActivity {
 
     private ImageView dogPicPreview;
     private Button dogChoosePhoto;
@@ -37,26 +38,27 @@ public class addActivity extends AppCompatActivity {
     private Spinner DGender;
     private EditText dogDOAEditText;
     private TextInputEditText DogPersonal;
-    private Button addDog_button;
+    private Button updateDog_button;
     private Calendar calendar;
     int SELECT_PICTURE = 200;
+    Dog aso = new Dog();
     RequestProcessor processor = new RequestProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_update);
 
-        dogDOAEditText = findViewById(R.id.dogDOA);
-        DName = findViewById(R.id.dogName);
-        DGender = findViewById(R.id.dogGender);
-        dogChoosePhoto = (Button) findViewById(R.id.dogChoosePhoto);
-        dogPicPreview = findViewById(R.id.dogPhoto);
-        DAge = findViewById(R.id.dogAge);
-        DBreed = findViewById(R.id.dogBreed);
-        DogPersonal = findViewById(R.id.dogPersonality);
-        addDog_button = (Button) findViewById(R.id.addDog_button);
-        DStatus = findViewById(R.id.dogStatus);
+        dogDOAEditText = findViewById(R.id.asoDOA);
+        DName = findViewById(R.id.asoName);
+        DGender = findViewById(R.id.asoGender);
+        dogChoosePhoto = (Button) findViewById(R.id.asoChoosePhoto);
+        dogPicPreview = findViewById(R.id.asoPhoto);
+        DAge = findViewById(R.id.asoAge);
+        DBreed = findViewById(R.id.asoBreed);
+        DogPersonal = findViewById(R.id.asoPersonality);
+        updateDog_button = (Button) findViewById(R.id.updateAso_button);
+        DStatus = findViewById(R.id.asoStatus);
         calendar = Calendar.getInstance();
 
         dogChoosePhoto.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +68,7 @@ public class addActivity extends AppCompatActivity {
                 imageChooser();
             }
         });
-        addDog_button.setOnClickListener(new View.OnClickListener() {
+        updateDog_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -76,12 +78,12 @@ public class addActivity extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] imageInByte = baos.toByteArray();
 
-                processor.DogAdd(imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+                processor.DogUpdate(21,imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
 
             }
         });
 
-
+        initializeParameters(21);
         // Optionally, set an initial date in the EditText
         updateDateInView();
 
@@ -141,8 +143,39 @@ public class addActivity extends AppCompatActivity {
     }
 
 
-    private void initializeButtons(){
+    private void initializeParameters(int id){
 
+        processor.DogRead(id);
+
+        processor.setCbs(new CallBack() {
+            @Override
+            public void returnResult(Object obj) {
+                Dog aso = (Dog) obj;
+                if (aso != null) {
+                    Log.i("Information", "umabot siya dito");
+                    //dogPicPreview.setImageURI(aso.getPhoto());
+                    DName.setText(aso.getName());
+                    DBreed.setText(aso.getBreed());
+                    DAge.setText(aso.getAge());
+                    dogDOAEditText.setText(aso.getDoa().toString());
+                    DogPersonal.setText(aso.getPersonality());
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(updateActivity.this, R.array.dogGenderSpin, android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    DGender.setAdapter(adapter);
+                    if (aso.getGender() != null) {
+                        int spinnerPosition = adapter.getPosition(aso.getGender());
+                        DGender.setSelection(spinnerPosition);
+                    }
+                    ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(updateActivity.this, R.array.dogStatusSpin, android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    DStatus.setAdapter(adapter2);
+                    if (aso.getStatus() != null) {
+                        int spinnerPosition = adapter.getPosition(aso.getStatus());
+                        DStatus.setSelection(spinnerPosition);
+                    }
+                }
+            }
+        });
 
 
     }

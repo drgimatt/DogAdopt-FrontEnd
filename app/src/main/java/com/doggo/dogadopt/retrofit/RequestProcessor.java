@@ -21,7 +21,9 @@ import retrofit2.Response;
 public class RequestProcessor {
 
     Account accountData = new Account();
+    Dog dogData = new Dog();
     List<Account> accountList = new ArrayList<>();
+    List<Dog> dogList = new ArrayList<>();
     RetrofitService retrofitService = new RetrofitService();
     AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
     DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
@@ -29,7 +31,7 @@ public class RequestProcessor {
     CallBack cbs;
 
     public void DogAdd(byte[] photoBytes, String name, String breed, String age, String doa, String personality, String status, String gender){
-        RequestBody imageBody = RequestBody.create(MediaType.parse("image*/"),photoBytes);
+        RequestBody imageBody = RequestBody.create(MediaType.parse("image/"),photoBytes);
         RequestBody nameBody = RequestBody.create(MediaType.parse("text/plain"),name);
         RequestBody breedBody = RequestBody.create(MediaType.parse("text/plain"),breed);
         RequestBody ageBody = RequestBody.create(MediaType.parse("text/plain"),age);
@@ -72,6 +74,50 @@ public class RequestProcessor {
             @Override
             public void onFailure(Call<Dog> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+            }
+        });
+    }
+
+    public void DogReadAll(){
+        Call<List<Dog>> call = dogApi.getDogs();
+        call.enqueue(new Callback<List<Dog>>() {
+            @Override
+            public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
+                Log.i("Success", "Process completed " + response.body());
+                dogList = response.body();
+                cbs.returnResult(dogList);
+            }
+
+            @Override
+            public void onFailure(Call<List<Dog>> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(dogData);
+            }
+        });
+    }
+
+    public void DogRead(int id){
+        Call<Dog> call = dogApi.getDog(id);
+        call.enqueue(new Callback<Dog>() {
+            @Override
+            public void onResponse(Call<Dog> call, Response<Dog> response) {
+                Log.i("Success", "Process completed " + response.body());
+                Dog holder = (Dog) response.body();
+                dogData.setAge(holder.getAge());
+                dogData.setBreed(holder.getBreed());
+                dogData.setDoa(holder.getDoa());
+                dogData.setName(holder.getName());
+                dogData.setId(holder.getId());
+                dogData.setGender(holder.getGender());
+                dogData.setPersonality(holder.getPersonality());
+                dogData.setPhoto(dogData.getPhoto());
+                cbs.returnResult(dogData);
+            }
+
+            @Override
+            public void onFailure(Call<Dog> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(dogData);
             }
         });
     }
@@ -135,6 +181,7 @@ public class RequestProcessor {
             @Override
             public void onFailure(Call<List<Account>> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(accountData);
             }
         });
     }

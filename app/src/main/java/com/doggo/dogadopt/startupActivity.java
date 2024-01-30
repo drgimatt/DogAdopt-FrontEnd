@@ -55,6 +55,8 @@ public class startupActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(startupActivity.this,"You have pressed the Signup button.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(), updateActivity.class);
+                    startActivity(i);
                 }
             });
 

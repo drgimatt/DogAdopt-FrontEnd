@@ -22,7 +22,7 @@ public interface DogApi {
     Call<List<Dog>> getDogs();
 
     @GET("/api/show-dog/{id}")
-    Call<List<Dog>> getDog(@Path("id") int id);
+    Call<Dog> getDog(@Path("id") int id);
 
     @Multipart
     @POST("/api/add-dog")
