@@ -1,4 +1,4 @@
-package com.doggo.dogadopt;
+package com.doggo.dogadopt.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

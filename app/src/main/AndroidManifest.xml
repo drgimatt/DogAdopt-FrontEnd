@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name="com.doggo.dogadopt.startupActivity"
+            android:name="com.doggo.dogadopt.activity.startupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +25,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.doggo.dogadopt.TestActivity"></activity>
-        <activity android:name="com.doggo.dogadopt.dashActivity"></activity>
-        <activity android:name="com.doggo.dogadopt.addActivity"></activity>
-        <activity android:name="com.doggo.dogadopt.DuplicateActivity"></activity>
-        <activity android:name="com.doggo.dogadopt.updateActivity"></activity>
+            android:name="com.doggo.dogadopt.activity.TestActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.activity.dashActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.activity.addActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.activity.DuplicateActivity"></activity>
+        <activity android:name="com.doggo.dogadopt.activity.updateActivity"></activity>
     </application>
 
 </manifest>

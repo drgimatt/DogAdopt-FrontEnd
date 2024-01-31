@@ -1,4 +1,4 @@
-package com.doggo.dogadopt;
+package com.doggo.dogadopt.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.doggo.dogadopt.model.Dog;
+import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.RequestProcessor;
 import com.escandor.dogadopt.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -84,7 +85,7 @@ public class updateActivity extends AppCompatActivity {
             }
         });
 
-        initializeParameters(1);
+        initializeParameters(21);
         // Optionally, set an initial date in the EditText
         updateDateInView();
 
@@ -174,14 +175,15 @@ public class updateActivity extends AppCompatActivity {
                         int spinnerPosition = adapter.getPosition(aso.getStatus());
                         DStatus.setSelection(spinnerPosition);
                     }
-//                    dogPicPreview.setImageBitmap(
-//                            Bitmap.createScaledBitmap(
-//                                    BitmapFactory.decodeByteArray(aso.getPhoto(), 0, aso.getPhoto().length),
-//                                    dogPicPreview.getWidth(),
-//                                    dogPicPreview.getHeight(),
-//                                    false
-//                            )
-//                    );
+                    dogPicPreview.setImageBitmap(
+                            Bitmap.createScaledBitmap(
+
+                                    BitmapFactory.decodeByteArray(aso.getPhoto(), 0, aso.getPhoto().length),
+                                    dogPicPreview.getWidth(),
+                                    dogPicPreview.getHeight(),
+                                    false
+                            )
+                    );
 
                 }
             }

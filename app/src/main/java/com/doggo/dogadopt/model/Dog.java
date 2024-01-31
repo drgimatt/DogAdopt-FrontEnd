@@ -162,7 +162,7 @@ public class Dog {
         sb.append(", name='").append(name).append('\'');
         sb.append(", photo='").append(photo).append('\'');
         sb.append(", breed='").append(breed).append('\'');
-        sb.append(", age (in months)=").append(age);
+        sb.append(", age=").append(age);
         sb.append(", date of arrival=").append(doa);
         sb.append(", personality=").append(personality);
         sb.append(", gender=").append(gender);

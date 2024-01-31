@@ -1,4 +1,4 @@
-package com.doggo.dogadopt;
+package com.doggo.dogadopt.activity;
 
 import android.os.Bundle;
 import android.util.Log;

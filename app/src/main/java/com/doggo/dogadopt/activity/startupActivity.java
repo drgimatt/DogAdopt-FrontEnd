@@ -1,9 +1,8 @@
-package com.doggo.dogadopt;
+package com.doggo.dogadopt.activity;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.doggo.dogadopt.model.Account;
+import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.RequestProcessor;
 import com.escandor.dogadopt.R;
 

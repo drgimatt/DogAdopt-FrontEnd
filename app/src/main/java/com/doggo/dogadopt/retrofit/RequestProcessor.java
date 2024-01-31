@@ -2,14 +2,11 @@ package com.doggo.dogadopt.retrofit;
 
 import android.util.Log;
 
-import com.doggo.dogadopt.CallBack;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -110,7 +107,7 @@ public class RequestProcessor {
                 dogData.setId(holder.getId());
                 dogData.setGender(holder.getGender());
                 dogData.setPersonality(holder.getPersonality());
-                dogData.setPhoto(dogData.getPhoto());
+                dogData.setPhoto(holder.getPhoto());
                 cbs.returnResult(dogData);
             }
 
