@@ -3,6 +3,7 @@ package com.doggo.dogadopt;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -83,7 +84,7 @@ public class updateActivity extends AppCompatActivity {
             }
         });
 
-        initializeParameters(21);
+        initializeParameters(1);
         // Optionally, set an initial date in the EditText
         updateDateInView();
 
@@ -153,10 +154,10 @@ public class updateActivity extends AppCompatActivity {
                 Dog aso = (Dog) obj;
                 if (aso != null) {
                     Log.i("Information", "umabot siya dito");
-                    //dogPicPreview.setImageURI(aso.getPhoto());
+
                     DName.setText(aso.getName());
                     DBreed.setText(aso.getBreed());
-                    DAge.setText(aso.getAge());
+                    DAge.setText(((String.valueOf(aso.getAge()))));
                     dogDOAEditText.setText(aso.getDoa().toString());
                     DogPersonal.setText(aso.getPersonality());
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(updateActivity.this, R.array.dogGenderSpin, android.R.layout.simple_spinner_item);
@@ -173,6 +174,15 @@ public class updateActivity extends AppCompatActivity {
                         int spinnerPosition = adapter.getPosition(aso.getStatus());
                         DStatus.setSelection(spinnerPosition);
                     }
+//                    dogPicPreview.setImageBitmap(
+//                            Bitmap.createScaledBitmap(
+//                                    BitmapFactory.decodeByteArray(aso.getPhoto(), 0, aso.getPhoto().length),
+//                                    dogPicPreview.getWidth(),
+//                                    dogPicPreview.getHeight(),
+//                                    false
+//                            )
+//                    );
+
                 }
             }
         });
