@@ -80,12 +80,12 @@ public class updateActivity extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] imageInByte = baos.toByteArray();
 
-                processor.DogUpdate(21,imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+                processor.DogUpdate(23,imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
 
             }
         });
 
-        initializeParameters(21);
+        initializeParameters(23);
         // Optionally, set an initial date in the EditText
         updateDateInView();
 
@@ -165,14 +165,16 @@ public class updateActivity extends AppCompatActivity {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     DGender.setAdapter(adapter);
                     if (aso.getGender() != null) {
+                        Log.i("Gender","The gender is " + aso.getGender());
                         int spinnerPosition = adapter.getPosition(aso.getGender());
                         DGender.setSelection(spinnerPosition);
                     }
                     ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(updateActivity.this, R.array.dogStatusSpin, android.R.layout.simple_spinner_item);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     DStatus.setAdapter(adapter2);
                     if (aso.getStatus() != null) {
-                        int spinnerPosition = adapter.getPosition(aso.getStatus());
+                        Log.i("Status","The status is " + aso.getStatus());
+                        int spinnerPosition = adapter2.getPosition(aso.getStatus());
                         DStatus.setSelection(spinnerPosition);
                     }
                     dogPicPreview.setImageBitmap(

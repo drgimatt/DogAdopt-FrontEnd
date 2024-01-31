@@ -39,8 +39,8 @@ public interface DogApi {
     @Multipart
     @PUT("/api/update-dog/{id}")
     Call<Dog> updateDog(
-                     @Path("id") Long id,
-                     @Part("photo") MultipartBody.Part photo,
+                     @Path("id") int id,
+                     @Part MultipartBody.Part photo,
                      @Part("name") RequestBody name,
                      @Part("breed") RequestBody breed,
                      @Part("age") RequestBody age,

@@ -1,4 +1,5 @@
 package com.doggo.dogadopt.retrofit;
+import android.annotation.SuppressLint;
 import android.os.Build;
 
 import com.doggo.dogadopt.model.Account;
@@ -48,7 +49,7 @@ public class RetrofitService {
         GsonBuilder gsonBuilder = new GsonBuilder();
 
         // Create Custom Deserializer for dog class
-        JsonDeserializer<Dog> dogJsonDeserializer = (json, typeOfT, context) -> {
+        @SuppressLint({"NewApi", "LocalSuppress"}) JsonDeserializer<Dog> dogJsonDeserializer = (json, typeOfT, context) -> {
 
             JsonObject jsonObject = json.getAsJsonObject();
 
@@ -66,7 +67,6 @@ public class RetrofitService {
                         jsonObject.get("personality").getAsString(),
                         jsonObject.get("status").getAsString(),
                         jsonObject.get("gender").getAsString()
-
 
                 );
             } catch (ParseException e) {

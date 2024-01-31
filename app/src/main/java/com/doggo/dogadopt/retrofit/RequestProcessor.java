@@ -62,7 +62,7 @@ public class RequestProcessor {
         RequestBody genderBody = RequestBody.create(MediaType.parse("text/plain"),gender);
 
         MultipartBody.Part imagePart = MultipartBody.Part.createFormData("photo","file",imageBody);
-        dogApi.updateDog((long) ID,imagePart,nameBody,breedBody,ageBody,doaBody,personalityBody,statusBody,genderBody).enqueue(new Callback<Dog>() {
+        dogApi.updateDog(ID,imagePart,nameBody,breedBody,ageBody,doaBody,personalityBody,statusBody,genderBody).enqueue(new Callback<Dog>() {
             @Override
             public void onResponse(Call<Dog> call, Response<Dog> response) {
                 Log.i("Success", "Process completed " + response.body());
@@ -108,6 +108,7 @@ public class RequestProcessor {
                 dogData.setGender(holder.getGender());
                 dogData.setPersonality(holder.getPersonality());
                 dogData.setPhoto(holder.getPhoto());
+                dogData.setStatus(holder.getStatus());
                 cbs.returnResult(dogData);
             }
 

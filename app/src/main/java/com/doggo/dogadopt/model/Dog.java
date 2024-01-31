@@ -115,6 +115,7 @@ public class Dog {
         hash = 79 * hash + Objects.hashCode(this.age);
         hash = 79 * hash + Objects.hashCode(this.doa);
         hash = 79 * hash + Objects.hashCode(this.personality);
+        hash = 79 * hash + Objects.hashCode(this.status);
         hash = 79 * hash + Objects.hashCode(this.gender);
         return hash;
     }
@@ -149,6 +150,9 @@ public class Dog {
         if (!Objects.equals(this.personality, other.personality)) {
             return false;
         }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
         if (!Objects.equals(this.gender, other.gender)) {
             return false;
         }
@@ -166,6 +170,7 @@ public class Dog {
         sb.append(", date of arrival=").append(doa);
         sb.append(", personality=").append(personality);
         sb.append(", gender=").append(gender);
+        sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();
     }
