@@ -88,7 +88,7 @@ public class RequestProcessor {
             @Override
             public void onFailure(Call<List<Dog>> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
-                cbs.returnResult(dogData);
+                cbs.returnResult(dogList);
             }
         });
     }
@@ -179,7 +179,7 @@ public class RequestProcessor {
             @Override
             public void onFailure(Call<List<Account>> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
-                cbs.returnResult(accountData);
+                cbs.returnResult(accountList);
             }
         });
     }

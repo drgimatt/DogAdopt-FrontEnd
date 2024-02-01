@@ -58,15 +58,15 @@ public class RetrofitService {
 
             try {
                 return new Dog(
-                        jsonObject.get("id").getAsLong(),
+                        Long.parseLong(jsonObject.get("id").toString()),
                         Base64.getDecoder().decode(jsonObject.get("photo").getAsString()),
-                        jsonObject.get("name").getAsString(),
-                        jsonObject.get("breed").getAsString(),
-                        jsonObject.get("age").getAsInt(),
+                        jsonObject.get("name").toString(),
+                        jsonObject.get("breed").toString(),
+                        Integer.parseInt(jsonObject.get("age").toString()),
                         new java.sql.Date(sdf.parse(jsonObject.get("doa").getAsString()).getTime()),
-                        jsonObject.get("personality").getAsString(),
-                        jsonObject.get("status").getAsString(),
-                        jsonObject.get("gender").getAsString()
+                        jsonObject.get("personality").toString(),
+                        jsonObject.get("status").toString(),
+                        jsonObject.get("gender").toString()
 
                 );
             } catch (ParseException e) {

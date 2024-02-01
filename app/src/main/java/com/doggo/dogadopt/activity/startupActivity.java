@@ -81,7 +81,7 @@ public class startupActivity extends AppCompatActivity {
                             Account user = acc;
                             if(user.getRole().equals("ADMIN")){
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), dashActivity.class);
+                                Intent i = new Intent(getApplicationContext(), TestActivity.class);
                                 startActivity(i);
                                 finish();
                                 break;
