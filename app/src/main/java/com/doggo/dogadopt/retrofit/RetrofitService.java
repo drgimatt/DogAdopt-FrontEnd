@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -33,9 +34,14 @@ public class RetrofitService {
 
     private void initializeRetrofit(){
 
+        OkHttpClient connection = new OkHttpClient.Builder()
+                .retryOnConnectionFailure(true)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(new OkHttpClient())
+                .client(connection)
                 .addConverterFactory(GsonConverterFactory.create(customGson()))
                 .build();
 
