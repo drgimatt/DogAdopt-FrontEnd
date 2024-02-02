@@ -13,14 +13,14 @@
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:weightSum="50">
-<!--
+
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="158dp"
-            android:layout_height="48dp"
+            android:layout_width="201dp"
+            android:layout_height="55dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/viewdogheader" />
--->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,41 +40,22 @@
                 android:elevation="3dp"
                 android:src="@drawable/dog2" />
 
-            <Button
-                android:id="@+id/dogChoosePhoto"
+            <TextView
+                android:id="@+id/dogName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/btn_bg"
-                android:text="Choose File" />
-            <!-- android:onClick="pickFile" /> - to be implemented -->
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:textColor="@color/btn_bg"
+                android:layout_gravity="center_vertical"
+                android:text="Dog Name" />
+
 
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/TextInputLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="299dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Name"
-            android:textAlignment="center">
 
-            <com.google.android.material.textfield.TextInputEditText
-
-                android:id="@+id/dogName"
-                android:inputType="none"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
