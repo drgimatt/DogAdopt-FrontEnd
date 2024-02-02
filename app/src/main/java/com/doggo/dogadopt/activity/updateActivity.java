@@ -42,6 +42,7 @@ public class updateActivity extends AppCompatActivity {
     private TextInputEditText DogPersonal;
     private Button updateDog_button;
     private Calendar calendar;
+    private Long DogID;
     int SELECT_PICTURE = 200;
     Dog aso = new Dog();
     RequestProcessor processor = new RequestProcessor();
@@ -50,6 +51,9 @@ public class updateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+
+        Intent intent = getIntent();
+        DogID = intent.getLongExtra("dogID",0);
 
         dogDOAEditText = findViewById(R.id.asoDOA);
         DName = findViewById(R.id.asoName);
@@ -80,12 +84,12 @@ public class updateActivity extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] imageInByte = baos.toByteArray();
 
-                processor.DogUpdate(23,imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+                processor.DogUpdate(Math.toIntExact(getDogID()),imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
 
             }
         });
 
-        initializeParameters(23);
+        initializeParameters(DogID);
         // Optionally, set an initial date in the EditText
         updateDateInView();
 
@@ -144,10 +148,17 @@ public class updateActivity extends AppCompatActivity {
 
     }
 
+    public Long getDogID() {
+        return DogID;
+    }
 
-    private void initializeParameters(int id){
+    public void setDogID(Long dogID) {
+        DogID = dogID;
+    }
 
-        processor.DogRead(id);
+    private void initializeParameters(Long id){
+
+        processor.DogRead(Math.toIntExact(id));
 
         processor.setCbs(new CallBack() {
             @Override
