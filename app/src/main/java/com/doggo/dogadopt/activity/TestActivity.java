@@ -36,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),"ADMIN");
+                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),"USER");
                 lView.setAdapter(lAdapter);
                 progress.dismiss();
             }

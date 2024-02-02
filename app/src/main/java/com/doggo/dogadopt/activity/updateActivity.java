@@ -84,7 +84,7 @@ public class updateActivity extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] imageInByte = baos.toByteArray();
 
-                processor.DogUpdate(Math.toIntExact(getDogID()),imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+                processor.DogUpdate(Math.toIntExact(DogID),imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
 
             }
         });
@@ -147,15 +147,6 @@ public class updateActivity extends AppCompatActivity {
         }
 
     }
-
-    public Long getDogID() {
-        return DogID;
-    }
-
-    public void setDogID(Long dogID) {
-        DogID = dogID;
-    }
-
     private void initializeParameters(Long id){
 
         processor.DogRead(Math.toIntExact(id));
