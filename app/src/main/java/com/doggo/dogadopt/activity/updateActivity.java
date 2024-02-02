@@ -167,17 +167,17 @@ public class updateActivity extends AppCompatActivity {
                 if (aso != null) {
                     Log.i("Information", "umabot siya dito");
 
-                    DName.setText(aso.getName());
-                    DBreed.setText(aso.getBreed());
+                    DName.setText(aso.getName().replace("\"", ""));
+                    DBreed.setText(aso.getBreed().replace("\"", ""));
                     DAge.setText(((String.valueOf(aso.getAge()))));
                     dogDOAEditText.setText(aso.getDoa().toString());
-                    DogPersonal.setText(aso.getPersonality());
+                    DogPersonal.setText(aso.getPersonality().replace("\"", ""));
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(updateActivity.this, R.array.dogGenderSpin, android.R.layout.simple_spinner_item);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     DGender.setAdapter(adapter);
                     if (aso.getGender() != null) {
                         Log.i("Gender","The gender is " + aso.getGender());
-                        int spinnerPosition = adapter.getPosition(aso.getGender());
+                        int spinnerPosition = adapter.getPosition(aso.getGender().replace("\"", ""));
                         DGender.setSelection(spinnerPosition);
                     }
                     ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(updateActivity.this, R.array.dogStatusSpin, android.R.layout.simple_spinner_item);
@@ -185,7 +185,7 @@ public class updateActivity extends AppCompatActivity {
                     DStatus.setAdapter(adapter2);
                     if (aso.getStatus() != null) {
                         Log.i("Status","The status is " + aso.getStatus());
-                        int spinnerPosition = adapter2.getPosition(aso.getStatus());
+                        int spinnerPosition = adapter2.getPosition(aso.getStatus().replace("\"", ""));
                         DStatus.setSelection(spinnerPosition);
                     }
                     dogPicPreview.setImageBitmap(

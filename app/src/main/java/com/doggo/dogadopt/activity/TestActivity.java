@@ -5,7 +5,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.doggo.dogadopt.AdminListAdapter;
+import com.doggo.dogadopt.ListAdapter;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.RequestProcessor;
@@ -17,7 +17,7 @@ public class TestActivity extends AppCompatActivity {
 
 
     ListView lView;
-    AdminListAdapter lAdapter;
+    ListAdapter lAdapter;
     RequestProcessor processor = new RequestProcessor();
 
     @Override
@@ -30,7 +30,7 @@ public class TestActivity extends AppCompatActivity {
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new AdminListAdapter(TestActivity.this, dogList.toArray(new Dog[0]));
+                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),"ADMIN");
                 lView.setAdapter(lAdapter);
             }
         });

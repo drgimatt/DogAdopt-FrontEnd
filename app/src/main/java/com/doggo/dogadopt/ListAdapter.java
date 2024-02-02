@@ -1,7 +1,5 @@
 package com.doggo.dogadopt;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,21 +12,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 
-import com.doggo.dogadopt.activity.addActivity;
 import com.doggo.dogadopt.activity.updateActivity;
+import com.doggo.dogadopt.activity.viewActivity;
 import com.doggo.dogadopt.model.Dog;
 import com.escandor.dogadopt.R;
 
 import org.jetbrains.annotations.NotNull;
 
-public class AdminListAdapter extends BaseAdapter {
+public class ListAdapter extends BaseAdapter {
 
     Context context;
     private Dog[] dogs;
 
-    public AdminListAdapter(Context context, Dog[] dogs) { //change into accounts
+    private String userType;
+
+    public ListAdapter(Context context, Dog[] dogs, String userType) {
         this.context = context;
         this.dogs = dogs;
+        this.userType = userType;
     }
 
     @Override
@@ -74,9 +75,9 @@ public class AdminListAdapter extends BaseAdapter {
             result = convertView;
         }
 
-        viewHolder.dNameTxt.setText("Name: "+dogs[position].getName());
-        viewHolder.dBreedTxt.setText("Breed: "+dogs[position].getBreed());
-        viewHolder.dStatusTxt.setText("Status: "+dogs[position].getStatus());
+        viewHolder.dNameTxt.setText("Name: "+dogs[position].getName().replace("\"", ""));
+        viewHolder.dBreedTxt.setText("Breed: "+dogs[position].getBreed().replace("\"", ""));
+        viewHolder.dStatusTxt.setText("Status: "+dogs[position].getStatus().replace("\"", ""));
         viewHolder.picture.setImageBitmap(
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeByteArray(dogs[position].getPhoto(), 0, dogs[position].getPhoto().length),
@@ -85,11 +86,21 @@ public class AdminListAdapter extends BaseAdapter {
                         false
                 )
         );
+        if (userType == "ADMIN"){
+            viewHolder.function.setText("EDIT");
+        } else if (userType == "USER") {
+            viewHolder.function.setText("VIEW");
+        }
 
         viewHolder.function.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context.getApplicationContext(), updateActivity.class);
+                Intent i;
+                if (userType == "ADMIN"){
+                    i = new Intent(context.getApplicationContext(), updateActivity.class);
+                } else {
+                    i = new Intent(context.getApplicationContext(), viewActivity.class);
+                }
                 i.putExtra("dogID",dogs[position].getId());
                 context.startActivity(i);
             }
