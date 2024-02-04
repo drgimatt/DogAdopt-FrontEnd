@@ -25,11 +25,13 @@ public class ListAdapter extends BaseAdapter {
     private Dog[] dogs;
 
     private String userType;
+    private Long userID;
 
-    public ListAdapter(Context context, Dog[] dogs, String userType) {
+    public ListAdapter(Context context, Dog[] dogs, String userType, Long userID) {
         this.context = context;
         this.dogs = dogs;
         this.userType = userType;
+        this.userID = userID;
     }
 
     @Override
@@ -102,6 +104,7 @@ public class ListAdapter extends BaseAdapter {
                     i = new Intent(context.getApplicationContext(), viewActivity.class);
                 }
                 i.putExtra("dogID",dogs[position].getId());
+                i.putExtra("userID",0);
                 context.startActivity(i);
             }
         });

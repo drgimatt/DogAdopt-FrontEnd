@@ -82,12 +82,14 @@ public class startupActivity extends AppCompatActivity {
                             if(user.getRole().equals("ADMIN")){
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
+                                i.putExtra("userID",acc.getMyId());
                                 startActivity(i);
                                 finish();
                                 break;
                             } else if (user.getRole().equals("USER")){
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), addActivity.class);
+                                i.putExtra("userID",acc.getMyId());
                                 startActivity(i);
                                 finish();
                                 break;

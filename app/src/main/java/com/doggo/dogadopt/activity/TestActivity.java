@@ -1,6 +1,7 @@
 package com.doggo.dogadopt.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class TestActivity extends AppCompatActivity {
 
 
+    Long userID;
     ListView lView;
     ListAdapter lAdapter;
     QueryProcessor processor = new QueryProcessor();
@@ -30,13 +32,15 @@ public class TestActivity extends AppCompatActivity {
         progress.setMessage("Please wait...");
         progress.setCancelable(false);
         progress.show();
+        Intent intent = getIntent();
+        userID = intent.getLongExtra("userID",0);
         processor.DogReadAll();
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),"USER");
+                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),"USER",userID);
                 lView.setAdapter(lAdapter);
                 progress.dismiss();
             }

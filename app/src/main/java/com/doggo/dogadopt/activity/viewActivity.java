@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
+import com.doggo.dogadopt.model.Request;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.escandor.dogadopt.R;
@@ -30,7 +33,10 @@ public class viewActivity extends AppCompatActivity {
     private TextInputEditText DogPersonal;
     private Button requestDog_button;
     private Long DogID;
+    private Long userID;
     Dog aso = new Dog();
+    Account account = new Account();
+    Request request = new Request();
     QueryProcessor processor = new QueryProcessor();
 
     @Override
@@ -40,6 +46,7 @@ public class viewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         DogID = intent.getLongExtra("dogID",0);
+        userID = intent.getLongExtra("userID",0);
 
         dogDOAEditText = findViewById(R.id.viewDogDOA);
         DName = findViewById(R.id.viewDogName);
@@ -52,16 +59,30 @@ public class viewActivity extends AppCompatActivity {
         DStatus = findViewById(R.id.viewDogStatus);
 
         initializeParameters(DogID);
+        requestDog_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                processor.AccountRead(Math.toIntExact(userID));
+                processor.setCbs(new CallBack() {
+                    @Override
+                    public void returnResult(Object obj) {
+                        account = (Account) obj;
+                        processor.RequestAdd(DogID,userID,"09999254137","poggers",account.getFirstName() + " " + account.getLastName(),"FOR REVIEW");
+                    }
+                });
+
+
+            }
+        });
     }
 
 
     private void initializeParameters(Long id){
         processor.DogRead(Math.toIntExact(id));
-
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
-                Dog aso = (Dog) obj;
+                aso = (Dog) obj;
                 if (aso != null) {
 
                     DName.setText(aso.getName().replace("\"", ""));
