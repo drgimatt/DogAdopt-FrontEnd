@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
-import com.doggo.dogadopt.retrofit.RequestProcessor;
+import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.escandor.dogadopt.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -45,7 +45,7 @@ public class updateActivity extends AppCompatActivity {
     private Long DogID;
     int SELECT_PICTURE = 200;
     Dog aso = new Dog();
-    RequestProcessor processor = new RequestProcessor();
+    QueryProcessor processor = new QueryProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

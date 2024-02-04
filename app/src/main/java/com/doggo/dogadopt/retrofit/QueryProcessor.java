@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
+import com.doggo.dogadopt.model.Request;
+import com.escandor.dogadopt.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +17,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RequestProcessor {
+public class QueryProcessor {
 
     Account accountData = new Account();
     Dog dogData = new Dog();
+    Request requestData = new Request();
     List<Account> accountList = new ArrayList<>();
     List<Dog> dogList = new ArrayList<>();
+    List<Request> requestList = new ArrayList<>();
     RetrofitService retrofitService = new RetrofitService();
     AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
     DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
-
+    RequestApi requestApi = retrofitService.getRetrofit().create(RequestApi.class);
     CallBack cbs;
 
     public void DogAdd(byte[] photoBytes, String name, String breed, String age, String doa, String personality, String status, String gender){
@@ -208,6 +212,91 @@ public class RequestProcessor {
             public void onFailure(Call<Account> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
                 cbs.returnResult(accountData);
+            }
+        });
+
+    }
+
+    public void RequestAdd(Long dogID, Long userID, String contact, String message, String name, String status){
+        Request request = new Request();
+        request.setDogId(dogID);
+        request.setUserId(userID);
+        request.setReqContact(contact);
+        request.setReqMessage(message);
+        request.setReqName(name);
+        request.setReqStatus(status);
+        requestApi.createRequest(request).enqueue(new Callback<Request>() {
+            @Override
+            public void onResponse(Call<Request> call, Response<Request> response) {
+                Log.i("Success", "Process completed " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Request> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
+            }
+        });
+    };
+
+    public void RequestUpdate(Long reqID, Long dogID, Long userID, String contact, String message, String name, String status){
+        Request request = new Request();
+        request.setDogId(dogID);
+        request.setUserId(userID);
+        request.setReqContact(contact);
+        request.setReqMessage(message);
+        request.setReqName(name);
+        request.setReqStatus(status);
+        requestApi.updateRequest(request.getReqId(),request).enqueue(new Callback<Request>() {
+            @Override
+            public void onResponse(Call<Request> call, Response<Request> response) {
+                Log.i("Success", "Process completed " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Request> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
+            }
+        });
+    };
+
+    public void RequestReadAll(){
+        Call<List<Request>> call = requestApi.findRequests();
+        call.enqueue(new Callback<List<Request>>() {
+            @Override
+            public void onResponse(Call<List<Request>> call, Response<List<Request>> response) {
+
+                if (response.isSuccessful() && response.body() != null) {
+
+                    Log.i("Success", "Process completed " + response.body());
+                    requestList = response.body();
+                    cbs.returnResult(requestList);
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Request>> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(requestList);
+            }
+        });
+    }
+
+    public void RequestRead(int id){
+        Call<Request> call = requestApi.getRequest((long) id);
+        call.enqueue(new Callback<Request>() {
+            @Override
+            public void onResponse(Call<Request> call, Response<Request> response) {
+
+                requestData = response.body();
+                cbs.returnResult(requestData);
+                Log.i("Success", "Process completed " + response.body());
+
+
+            }
+            @Override
+            public void onFailure(Call<Request> call, Throwable t) {
+                Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(requestData);
             }
         });
 

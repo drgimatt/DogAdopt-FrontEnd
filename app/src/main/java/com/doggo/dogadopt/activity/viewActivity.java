@@ -2,26 +2,21 @@ package com.doggo.dogadopt.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
-import com.doggo.dogadopt.retrofit.RequestProcessor;
+import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.escandor.dogadopt.R;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.Calendar;
 
 public class viewActivity extends AppCompatActivity {
 
@@ -36,7 +31,7 @@ public class viewActivity extends AppCompatActivity {
     private Button requestDog_button;
     private Long DogID;
     Dog aso = new Dog();
-    RequestProcessor processor = new RequestProcessor();
+    QueryProcessor processor = new QueryProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

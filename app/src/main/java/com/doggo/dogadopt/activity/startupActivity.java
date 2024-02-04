@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.retrofit.CallBack;
-import com.doggo.dogadopt.retrofit.RequestProcessor;
+import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.escandor.dogadopt.R;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class startupActivity extends AppCompatActivity {
     EditText password;
     Button login;
     Button register;
-    RequestProcessor requestProcessor;
+    QueryProcessor queryProcessor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +65,13 @@ public class startupActivity extends AppCompatActivity {
 
         private void checkAccount(String uname, String pssword){
 
-            requestProcessor = new RequestProcessor();
-            requestProcessor.AccountReadAll();
+            queryProcessor = new QueryProcessor();
+            queryProcessor.AccountReadAll();
 
             if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
                 Toast.makeText(startupActivity.this,"Please enter credentials", Toast.LENGTH_SHORT).show();
             } else {
-            requestProcessor.setCbs(new CallBack() {
+            queryProcessor.setCbs(new CallBack() {
                 @Override
                 public void returnResult(Object obj) {
                     List<Account> accList = (List<Account>) obj;

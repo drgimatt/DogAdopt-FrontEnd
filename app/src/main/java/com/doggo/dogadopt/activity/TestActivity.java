@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.doggo.dogadopt.ListAdapter;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
-import com.doggo.dogadopt.retrofit.RequestProcessor;
+import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.escandor.dogadopt.R;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class TestActivity extends AppCompatActivity {
 
     ListView lView;
     ListAdapter lAdapter;
-    RequestProcessor processor = new RequestProcessor();
+    QueryProcessor processor = new QueryProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
