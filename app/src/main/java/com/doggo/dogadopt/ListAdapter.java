@@ -104,7 +104,7 @@ public class ListAdapter extends BaseAdapter {
                     i = new Intent(context.getApplicationContext(), viewActivity.class);
                 }
                 i.putExtra("dogID",dogs[position].getId());
-                i.putExtra("userID",0);
+                i.putExtra("userID",userID);
                 context.startActivity(i);
             }
         });
