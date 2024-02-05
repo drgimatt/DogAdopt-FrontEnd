@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="btn_bg">#539D7A</color>
+    <color name="status_adopted">#539D7A</color>
+    <color name="status_processing">#808080</color>
+    <color name="status_available">#4287f5</color>
 </resources>
