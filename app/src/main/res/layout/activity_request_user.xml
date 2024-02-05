@@ -54,7 +54,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/TextInputLayoutUserFullName"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -63,6 +63,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/TextInputLayoutUserFullName"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="299dp"
             android:layout_height="wrap_content"
