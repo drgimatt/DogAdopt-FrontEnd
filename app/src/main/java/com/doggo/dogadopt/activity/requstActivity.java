@@ -12,15 +12,16 @@ public class requstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_user);
 
-
-        TextInputLayout textInputLayout = findViewById(R.id.TextInputLayoutDogName);
-        TextInputEditText textInputEditText = textInputLayout.findViewById(R.id.asoName);
+        // DogName
+        TextInputLayout textInputLayoutDogName = findViewById(R.id.TextInputLayoutDogName);
+        TextInputEditText textInputEditTextDogName = textInputLayoutDogName.findViewById(R.id.asoName);
         // Disable the TextInputEditText
-        textInputEditText.setEnabled(false);
+        textInputEditTextDogName.setEnabled(false);
 
-        TextInputLayout textInputLayoutUser = findViewById(R.id.TextInputLayoutDogName);
-        TextInputEditText textInputEditTextUser = textInputLayout.findViewById(R.id.fullNameUser);
+        // FullName
+        TextInputLayout textInputLayoutUserFullName = findViewById(R.id.TextInputLayoutUserFullName);
+        TextInputEditText textInputEditTextUserFullName = textInputLayoutUserFullName.findViewById(R.id.fullNameUser);
         // Disable the TextInputEditText
-        textInputEditText.setEnabled(false);
+        textInputEditTextUserFullName.setEnabled(false);
     }
 }
