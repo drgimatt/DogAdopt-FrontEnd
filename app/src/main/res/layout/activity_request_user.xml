@@ -28,12 +28,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
-            android:text="Dog ID"
+            android:text="Dog Name"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/TextInputLayout"
+            android:id="@+id/TextInputLayoutDogName"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="299dp"
             android:layout_height="wrap_content"
@@ -41,23 +41,52 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:hint="Dog ID"
+            android:hint="Dog Name"
             android:textAlignment="center">
 
             <com.google.android.material.textfield.TextInputEditText
 
                 android:id="@+id/asoName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:enabled="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/TextInputLayoutUserFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="User ID"
+            android:text="Full Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="299dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullNameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="Full Name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:inputType="number"
+            android:text="Contact Number"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -75,7 +104,7 @@
                 android:id="@+id/asoBreed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="User ID" />
+                android:hint="Enter Contact Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -91,7 +120,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="299dp"
-            android:layout_height="155dp"
+            android:layout_height="109dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
@@ -101,9 +130,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/asoDOA"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 android:focusable="false"
-                android:hint="Enter Inquiry"/>
+                android:hint="Enter Inquiry" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -113,8 +142,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@color/btn_bg"
             android:text="SEND" />
 
