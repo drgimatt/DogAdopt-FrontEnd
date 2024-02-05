@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This create a View for each item in the data set -->
-<!-- The adapter inflates (creates a view from) this layout for each item and then populates it -->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    android:layout_margin="8dp">
 
-
-    <TextView
-        android:id="@+id/dNameTxt"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="Milo"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/dStatusTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:paddingBottom="2sp"
-        android:textStyle="bold"
-        android:text="ADOPTED"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/dNameTxt"
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="Request to Adopt Milo"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/item_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:backgroundTint="@color/btn_bg"
-        android:text="View Details"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/reqStatusTxt"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:paddingBottom="2sp"
+            android:text="FOR REVIEW"
+            android:textSize="16sp" />
 
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>
