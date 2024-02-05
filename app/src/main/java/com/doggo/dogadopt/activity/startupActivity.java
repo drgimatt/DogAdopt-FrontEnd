@@ -29,7 +29,7 @@ public class startupActivity extends AppCompatActivity {
     Button register;
     CheckBox persistentCredentials;
     QueryProcessor queryProcessor;
-
+    boolean hasCorrectCredentials = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +78,7 @@ public class startupActivity extends AppCompatActivity {
         }
 
         private void checkAccount(String uname, String pssword, SharedPreferences sharedPref){
-
+            hasCorrectCredentials = false;
             queryProcessor = new QueryProcessor();
             queryProcessor.AccountReadAll();
 
@@ -106,7 +106,8 @@ public class startupActivity extends AppCompatActivity {
                                 editor.putBoolean("persistentLogin",false);
                                 editor.commit();
                             }
-                            if(user.getRole().equals("ADMIN")){
+                            if (user.getRole().equals("ADMIN")){
+                                hasCorrectCredentials = true;
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
                                 i.putExtra("userID",acc.getMyId());
@@ -114,6 +115,7 @@ public class startupActivity extends AppCompatActivity {
                                 finish();
 
                             } else if (user.getRole().equals("USER")){
+                                hasCorrectCredentials = true;
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), addActivity.class);
                                 i.putExtra("userID",acc.getMyId());
@@ -123,11 +125,11 @@ public class startupActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
                         }
                     }
-
+                    if (hasCorrectCredentials == false){
+                        Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 

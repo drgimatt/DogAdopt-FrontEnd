@@ -124,11 +124,13 @@ public class QueryProcessor {
         });
     }
 
-    public void AccountAdd(String firstName, String lastName, String address, String username, String password, String role){
+    public void AccountAdd(String firstName, String lastName, String address, String contactNumber, int age, String username, String password, String role){
         Account account = new Account();
         account.setFirstName(firstName);
         account.setLastName(lastName);
         account.setMyAddress(address);
+        account.setContactNumber(contactNumber);
+        account.setAge(age);
         account.setUsername(username);
         account.setPassword(password);
         account.setRole(role);
@@ -145,11 +147,13 @@ public class QueryProcessor {
         });
     }
 
-    public void AccountUpdate(int ID, String firstName, String lastName, String address, String username, String password, String role){
+    public void AccountUpdate(int ID, String firstName, String lastName, String address, String contactNumber, int age, String username, String password, String role){
         Account account = new Account();
         account.setFirstName(firstName);
         account.setLastName(lastName);
         account.setMyAddress(address);
+        account.setContactNumber(contactNumber);
+        account.setAge(age);
         account.setUsername(username);
         account.setPassword(password);
         account.setRole(role);
@@ -194,15 +198,7 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
 
-
-                    Account holder = (Account) response.body();
-                    accountData.setMyId(holder.getMyId());
-                    accountData.setFirstName(holder.getFirstName());
-                    accountData.setLastName(holder.getLastName());
-                    accountData.setMyAddress(holder.getMyAddress());
-                    accountData.setUsername(holder.getUsername());
-                    accountData.setPassword(holder.getPassword());
-                    accountData.setRole(holder.getRole());
+                    accountData = response.body();
                     cbs.returnResult(accountData);
                     Log.i("Success", "Process completed " + response.body());
 

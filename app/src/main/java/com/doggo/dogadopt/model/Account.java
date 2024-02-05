@@ -8,18 +8,22 @@ public class Account {
     private String firstName;
     private String lastName;
     private String myAddress;
+    private String contactNumber;
     private String username;
     private String password;
     private String role;
+    private int age;
 
     public Account() {
     }
 
-    public Account(Long myId, String firstName, String lastName, String myAddress, String username, String password, String role) {
+    public Account(Long myId, String firstName, String lastName, String myAddress, String contactNumber, int age, String username, String password, String role) {
         this.myId = myId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.myAddress = myAddress;
+        this.contactNumber = contactNumber;
+        this.age = age;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -81,6 +85,22 @@ public class Account {
         this.role = role;
     }
 
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -88,6 +108,8 @@ public class Account {
         hash = 79 * hash + Objects.hashCode(this.firstName);
         hash = 79 * hash + Objects.hashCode(this.lastName);
         hash = 79 * hash + Objects.hashCode(this.myAddress);
+        hash = 79 * hash + Objects.hashCode(this.contactNumber);
+        hash = 79 * hash + Objects.hashCode(this.age);
         hash = 79 * hash + Objects.hashCode(this.username);
         hash = 79 * hash + Objects.hashCode(this.password);
         hash = 79 * hash + Objects.hashCode(this.role);
@@ -118,6 +140,12 @@ public class Account {
         if (!Objects.equals(this.myAddress, other.myAddress)) {
             return false;
         }
+        if (!Objects.equals(this.contactNumber, other.contactNumber)) {
+            return false;
+        }
+        if (!Objects.equals(this.age, other.age)) {
+            return false;
+        }
         if (!Objects.equals(this.lastName, other.lastName)) {
             return false;
         }
@@ -134,6 +162,8 @@ public class Account {
         sb.append(", firstName=").append(firstName).append('\'');
         sb.append(", lastName=").append(lastName).append('\'');
         sb.append(", myAddress=").append(myAddress).append('\'');
+        sb.append(", contactNumber=").append(contactNumber).append('\'');
+        sb.append(", age=").append(age).append('\'');
         sb.append(", username=").append(username).append('\'');
         sb.append(", password=").append(password).append('\'');
         sb.append(", role=").append(role);
