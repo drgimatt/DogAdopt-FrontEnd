@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="com.doggo.dogadopt.activity.updateActivity">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="145dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="44dp"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@drawable/update_header" />
 
 
     <LinearLayout
@@ -15,14 +25,7 @@
         android:orientation="vertical"
         android:weightSum="50">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="378dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleX="2"
-            android:scaleY="2"
-            android:src="@drawable/update_header" />
+      
 
         <LinearLayout
             android:layout_width="match_parent"
