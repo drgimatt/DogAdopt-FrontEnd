@@ -62,14 +62,19 @@ public class viewActivity extends AppCompatActivity {
         requestDog_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                processor.AccountRead(Math.toIntExact(userID));
-                processor.setCbs(new CallBack() {
-                    @Override
-                    public void returnResult(Object obj) {
-                        account = (Account) obj;
-                        processor.RequestAdd(DogID,userID,"09999254137","poggers",account.getFirstName() + " " + account.getLastName(),"FOR REVIEW");
-                    }
-                });
+                Intent i = new Intent(getApplicationContext(), requestActivity.class);
+                i.putExtra("userID",userID);
+                i.putExtra("dogID",DogID);
+                startActivity(i);
+
+//                processor.AccountRead(Math.toIntExact(userID));
+//                processor.setCbs(new CallBack() {
+//                    @Override
+//                    public void returnResult(Object obj) {
+//                        account = (Account) obj;
+//                        processor.RequestAdd(DogID,userID,"09999254137","poggers",account.getFirstName() + " " + account.getLastName(),"FOR REVIEW");
+//                    }
+//                });
 
 
             }

@@ -110,6 +110,7 @@ public class startupActivity extends AppCompatActivity {
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
                                 i.putExtra("userID",acc.getMyId());
+                                i.putExtra("userType","ADMIN");
                                 startActivity(i);
                                 username.setText("");
                                 password.setText("");
@@ -120,6 +121,7 @@ public class startupActivity extends AppCompatActivity {
                                 Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), addActivity.class);
                                 i.putExtra("userID",acc.getMyId());
+                                i.putExtra("userType","USER");
                                 startActivity(i);
                                 username.setText("");
                                 password.setText("");
