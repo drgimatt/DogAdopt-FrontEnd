@@ -12,6 +12,7 @@
         <item>FEMALE</item>
     </string-array>
     <string-array name="reqStatus">
+        <item>FOR ADOPTION</item>
         <item>PENDING</item>
         <item>RESOLVED</item>
     </string-array>
