@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -123,11 +124,15 @@ public class dashActivity extends AppCompatActivity {
 
 
         Menu menu = navigationView.getMenu();
+        SubMenu sb = menu.addSubMenu("Administrative Functions");
+        sb.add("Add a Dog");
+        SubMenu sb2 = menu.addSubMenu("Testing purposes only");
+        sb2.add("Sort List");
         if (account.getRole().equals("ADMIN")){
-            menu.add("Add a Dog");
+            sb.setGroupVisible(0,true);
         }
-        menu.add("View Requests");
         menu.add("Reload List");
+        menu.add("View Requests");
         menu.add("FAQ");
         menu.add("Logout");
 
@@ -139,6 +144,9 @@ public class dashActivity extends AppCompatActivity {
                     if (item.getTitle().equals("View Requests")){
                         layout.closeDrawers();
                         Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(item.getTitle().equals("Sort List")){
+                        Toast.makeText(dashActivity.this,"Assume that we can sort lists.", Toast.LENGTH_SHORT).show();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
                         layout.closeDrawers();
