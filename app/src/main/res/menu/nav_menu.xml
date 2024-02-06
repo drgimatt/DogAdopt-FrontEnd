@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/nav_viewRequests"
-        android:title="View a Request" />
+        android:title="View Requests" />
 
     <item
         android:id="@+id/nav_addDog"
