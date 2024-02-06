@@ -60,7 +60,7 @@ public class requestActivity extends AppCompatActivity {
             @Override
             public void returnResult(Object obj) {
                 dog = (Dog) obj;
-                dogName.setText(dog.getName());
+                dogName.setText(dog.getName().replace("\"", ""));
             }
         });
 

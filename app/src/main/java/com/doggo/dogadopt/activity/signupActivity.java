@@ -57,20 +57,16 @@ public class signupActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if((keyCode == KeyEvent.KEYCODE_BACK)) {
-            triggerCancel();
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        super.onBackPressed();
+        triggerCancel();
     }
 
     void triggerCancel(){
         AlertDialog.Builder frameBuilder = new AlertDialog.Builder(this);
-        frameBuilder.setCancelable(true);
+        frameBuilder.setCancelable(false);
         frameBuilder.setTitle("Cancel Signup");
         frameBuilder.setMessage("Do you want to cancel signup?");
         frameBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -83,6 +79,12 @@ public class signupActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+            }
+        });
+        frameBuilder.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                return keyCode == KeyEvent.KEYCODE_BACK;
             }
         });
         AlertDialog dialog = frameBuilder.create();
