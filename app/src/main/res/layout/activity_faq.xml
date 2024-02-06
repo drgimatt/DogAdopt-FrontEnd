@@ -17,6 +17,7 @@
         android:scaleX="3"
         android:scaleY="3"
         android:src="@drawable/faq_header" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,13 +54,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:text="How can I search for dogs available for adoption on the app?"
             android:textColor="@color/btn_bg"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/viewFAQAns2"
@@ -71,18 +72,19 @@
             android:layout_weight="1"
             android:text="CityBarks Adoption provides a user-friendly interface to help you find the perfect furry companion. After logging in to your account, simply navigate to the dog records that will welcome you right away. "
             android:textSize="16dp" />
+
         <TextView
             android:id="@+id/viewFAQ3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:text="How can I submit an adoption application for a dog I'm interested in?"
             android:textColor="@color/btn_bg"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/viewFAQAns3"
