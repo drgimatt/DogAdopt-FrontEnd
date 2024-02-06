@@ -33,14 +33,6 @@
                 android:layout_height="145dp"
                 app:srcCompat="@drawable/dash_header" />
 
-            <Button
-                android:id="@+id/admin_addDog_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_bg"
-                android:text="+ Add a Dog" />
-
             <ListView
                 android:id="@+id/dogList"
                 android:layout_width="match_parent"

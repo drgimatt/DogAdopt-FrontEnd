@@ -9,6 +9,10 @@
 
         <item
             android:id="@+id/nav_item2"
+            android:title="Add a Dog" />
+
+        <item
+            android:id="@+id/nav_item3"
             android:title="Logout" />
     </group>
 
