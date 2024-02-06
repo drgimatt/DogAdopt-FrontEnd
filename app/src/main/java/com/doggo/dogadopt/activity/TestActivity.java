@@ -46,6 +46,25 @@ public class TestActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadingDialog progress = new LoadingDialog(TestActivity.this);
+        progress.startLoadingAnimation();
+        processor.DogReadAll();
+        processor.setCbs(new CallBack() {
+            @Override
+            public void returnResult(Object obj) {
+                List<Dog> dogList = (List<Dog>) obj;
+                lView = (ListView) findViewById(R.id.dogList);
+                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                lView.setAdapter(lAdapter);
+                progress.dismissAnimation();
+            }
+        });
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_final);
