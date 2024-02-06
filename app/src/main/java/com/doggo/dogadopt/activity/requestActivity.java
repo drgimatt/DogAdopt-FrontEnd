@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.R;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
@@ -34,6 +35,8 @@ public class requestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_user);
 
+        LoadingDialog progress = new LoadingDialog(requestActivity.this);
+        progress.startLoadingAnimation();
         Intent intent = getIntent();
         DogID = intent.getLongExtra("dogID",0);
         userID = intent.getLongExtra("userID",0);
@@ -61,6 +64,7 @@ public class requestActivity extends AppCompatActivity {
             public void returnResult(Object obj) {
                 dog = (Dog) obj;
                 dogName.setText(dog.getName().replace("\"", ""));
+                progress.dismissAnimation();
             }
         });
 
@@ -69,15 +73,24 @@ public class requestActivity extends AppCompatActivity {
             public void onClick(View v) {
                 processor = new QueryProcessor();
                 processor.RequestAdd(DogID,userID,contact.getText().toString(),inquiry.getText().toString(),account.getFirstName() + " " + account.getLastName(),"FOR REVIEW");
+
+
+
+
                 processor.setCbs(new CallBack() {
                     @Override
                     public void returnResult(Object obj) {
+                        LoadingDialog progress = new LoadingDialog(requestActivity.this);
+                        progress.startLoadingAnimation();
                         if ((boolean) obj == true){
+                            progress.dismissAnimation();
                             Toast.makeText(requestActivity.this,"Request for adoption is successful.", Toast.LENGTH_SHORT).show();
                             finish();
                         } else if ((boolean) obj == false){
+                            progress.dismissAnimation();
                             Toast.makeText(requestActivity.this,"Request for adoption is unsuccessful. Please try again", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
             }

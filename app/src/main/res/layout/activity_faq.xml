@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.doggo.dogadopt.activity.viewActivity">
+    tools:context="com.doggo.dogadopt.activity.faqActivity">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="138dp"
@@ -33,7 +32,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="45dp"
             android:layout_weight="1"
-            android:text="What is CityBarks Adotion about?"
+            android:text="What is CityBarks Adoption about?"
             android:textColor="@color/btn_bg"
             android:textSize="20dp"
             android:textStyle="bold" />

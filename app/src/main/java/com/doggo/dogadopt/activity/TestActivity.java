@@ -52,10 +52,6 @@ public class TestActivity extends AppCompatActivity {
         LoadingDialog progress = new LoadingDialog(TestActivity.this);
         progress.startLoadingAnimation();
 
-//        ProgressDialog progress = new ProgressDialog(this);
-//        progress.setMessage("Please wait...");
-//        progress.setCancelable(false);
-//        progress.show();
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("accountDetails");
         processor.DogReadAll();
@@ -66,7 +62,6 @@ public class TestActivity extends AppCompatActivity {
                 lView = (ListView) findViewById(R.id.dogList);
                 lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
-                //progress.dismiss();
                 progress.dismissAnimation();
             }
         });

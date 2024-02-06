@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.model.Request;
@@ -66,23 +67,14 @@ public class viewActivity extends AppCompatActivity {
                 i.putExtra("userID",userID);
                 i.putExtra("dogID",DogID);
                 startActivity(i);
-
-//                processor.AccountRead(Math.toIntExact(userID));
-//                processor.setCbs(new CallBack() {
-//                    @Override
-//                    public void returnResult(Object obj) {
-//                        account = (Account) obj;
-//                        processor.RequestAdd(DogID,userID,"09999254137","poggers",account.getFirstName() + " " + account.getLastName(),"FOR REVIEW");
-//                    }
-//                });
-
-
             }
         });
     }
 
 
     private void initializeParameters(Long id){
+        LoadingDialog progress = new LoadingDialog(viewActivity.this);
+        progress.startLoadingAnimation();
         processor.DogRead(Math.toIntExact(id));
         processor.setCbs(new CallBack() {
             @Override
@@ -109,6 +101,7 @@ public class viewActivity extends AppCompatActivity {
                     );
 
                 }
+                progress.dismissAnimation();
             }
         });
 

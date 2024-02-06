@@ -15,9 +15,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
@@ -52,6 +54,7 @@ public class updateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+
         Intent intent = getIntent();
         DogID = intent.getLongExtra("dogID",0);
 
@@ -85,6 +88,21 @@ public class updateActivity extends AppCompatActivity {
                 byte[] imageInByte = baos.toByteArray();
 
                 processor.DogUpdate(Math.toIntExact(DogID),imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+                processor.setCbs(new CallBack() {
+                    @Override
+                    public void returnResult(Object obj) {
+                        LoadingDialog progress = new LoadingDialog(updateActivity.this);
+                        progress.startLoadingAnimation();
+                        boolean isSuccessful = (boolean) obj;
+                        progress.dismissAnimation();
+                        if (isSuccessful){
+                            Toast.makeText(updateActivity.this,"Update successful.", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else{
+                            Toast.makeText(updateActivity.this,"Update not successful. Please try again.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
             }
         });
@@ -154,6 +172,8 @@ public class updateActivity extends AppCompatActivity {
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
+                LoadingDialog progress = new LoadingDialog(updateActivity.this);
+                progress.startLoadingAnimation();
                 Dog aso = (Dog) obj;
                 if (aso != null) {
                     Log.i("Information", "umabot siya dito");
@@ -190,7 +210,9 @@ public class updateActivity extends AppCompatActivity {
                     );
 
                 }
+                progress.dismissAnimation();
             }
+
         });
 
 

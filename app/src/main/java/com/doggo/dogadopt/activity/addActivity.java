@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.doggo.dogadopt.R;
@@ -83,12 +84,17 @@ public class addActivity extends AppCompatActivity {
                 processor.setCbs(new CallBack() {
                     @Override
                     public void returnResult(Object obj) {
+                        LoadingDialog progress = new LoadingDialog(addActivity.this);
+                        progress.startLoadingAnimation();
                         if ((boolean) obj == true){
+                            progress.dismissAnimation();
                             Toast.makeText(addActivity.this,"Dog addition is successful.", Toast.LENGTH_SHORT).show();
                             finish();
                         } else if ((boolean) obj == false){
+                            progress.dismissAnimation();
                             Toast.makeText(addActivity.this,"Dog addition is unsuccessful. Please try again", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
 
