@@ -89,7 +89,6 @@ public class ListAdapter extends BaseAdapter {
                         false
                 )
         );
-        Log.i("Info","Account Type sa Listview: " + userType);
         if (userType.equals("ADMIN")){
             viewHolder.function.setText("EDIT");
         } else if (userType.equals("USER")) {

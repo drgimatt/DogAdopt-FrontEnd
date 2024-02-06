@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.doggo.dogadopt.activity.TestActivity" />
+        <activity android:name="com.doggo.dogadopt.activity.dashActivity" />
         <activity android:name="com.doggo.dogadopt.activity.faqActivity" />
         <activity android:name="com.doggo.dogadopt.activity.addActivity" />
         <activity android:name="com.doggo.dogadopt.activity.updateActivity" />

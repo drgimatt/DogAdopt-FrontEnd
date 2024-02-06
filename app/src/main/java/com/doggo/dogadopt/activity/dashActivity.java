@@ -1,17 +1,12 @@
 package com.doggo.dogadopt.activity;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,13 +24,12 @@ import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
-import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-public class TestActivity extends AppCompatActivity {
+public class dashActivity extends AppCompatActivity {
 
     ListView lView;
     ListAdapter lAdapter;
@@ -48,7 +42,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        LoadingDialog progress = new LoadingDialog(TestActivity.this);
+        LoadingDialog progress = new LoadingDialog(dashActivity.this);
         progress.startLoadingAnimation();
         processor.DogReadAll();
         processor.setCbs(new CallBack() {
@@ -56,7 +50,7 @@ public class TestActivity extends AppCompatActivity {
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
                 progress.dismissAnimation();
             }
@@ -67,8 +61,8 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_final);
-        LoadingDialog progress = new LoadingDialog(TestActivity.this);
+        setContentView(R.layout.activity_dash);
+        LoadingDialog progress = new LoadingDialog(dashActivity.this);
         progress.startLoadingAnimation();
 
         Intent intent = getIntent();
@@ -79,7 +73,7 @@ public class TestActivity extends AppCompatActivity {
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
                 progress.dismissAnimation();
             }
@@ -120,7 +114,7 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     if (item.getTitle().equals("View Requests")){
-                        Toast.makeText(TestActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
                         layout.closeDrawers();
