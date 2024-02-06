@@ -27,6 +27,8 @@ import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.doggo.dogadopt.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class dashActivity extends AppCompatActivity {
@@ -49,6 +51,14 @@ public class dashActivity extends AppCompatActivity {
             @Override
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
+                Collections.sort(dogList, new Comparator<Dog>() {
+                    @Override
+                    public int compare(Dog o1, Dog o2) {
+                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
+                    }
+                });
+
+
                 lView = (ListView) findViewById(R.id.dogList);
                 lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
@@ -72,6 +82,14 @@ public class dashActivity extends AppCompatActivity {
             @Override
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
+                Collections.sort(dogList, new Comparator<Dog>() {
+                    @Override
+                    public int compare(Dog o1, Dog o2) {
+                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
+                    }
+                });
+
+
                 lView = (ListView) findViewById(R.id.dogList);
                 lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
@@ -136,6 +154,14 @@ public class dashActivity extends AppCompatActivity {
                             @Override
                             public void returnResult(Object obj) {
                                 List<Dog> dogList = (List<Dog>) obj;
+                                Collections.sort(dogList, new Comparator<Dog>() {
+                                    @Override
+                                    public int compare(Dog o1, Dog o2) {
+                                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
+                                    }
+                                });
+
+
                                 lView = (ListView) findViewById(R.id.dogList);
                                 lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                                 lView.setAdapter(lAdapter);
