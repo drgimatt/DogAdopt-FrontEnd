@@ -116,6 +116,8 @@ public class startupActivity extends AppCompatActivity {
                                 password.setText("");
                                 finish();
                                 break;
+                            } else {
+                                Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -174,9 +176,9 @@ public class startupActivity extends AppCompatActivity {
 //                            }
 //                        }
 //                    }
-//                    if (hasCorrectCredentials == false){
-//                        Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
-//                    }
+                    if (hasCorrectCredentials == false){
+                        Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
