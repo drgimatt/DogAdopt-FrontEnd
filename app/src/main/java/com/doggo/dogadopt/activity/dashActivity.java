@@ -95,7 +95,14 @@ public class dashActivity extends AppCompatActivity {
         TextView fullname = sideNavLayout.findViewById(R.id.fullname_menuLabel);
         TextView usertype = sideNavLayout.findViewById(R.id.usertype_menuLabel);
         fullname.setText(account.getFirstName() + " " + account.getLastName());
-        usertype.setText(account.getRole());
+        if (account.getRole().equals("ADMIN")){
+            usertype.setText("Administrator");
+        } else if (account.getRole().equals("USER")){
+            usertype.setText("Adoptee");
+        } else {
+            usertype.setText("UNKNOWN");
+        }
+
 
         Menu menu = navigationView.getMenu();
         if (account.getRole().equals("ADMIN")){

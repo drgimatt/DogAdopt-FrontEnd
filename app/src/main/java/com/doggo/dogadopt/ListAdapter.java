@@ -78,9 +78,9 @@ public class ListAdapter extends BaseAdapter {
             result = convertView;
         }
 
-        viewHolder.dNameTxt.setText("Name: "+dogs[position].getName().replace("\"", ""));
-        viewHolder.dBreedTxt.setText("Breed: "+dogs[position].getBreed().replace("\"", ""));
-        viewHolder.dStatusTxt.setText("Status: "+dogs[position].getStatus().replace("\"", ""));
+        viewHolder.dNameTxt.setText(dogs[position].getName().replace("\"", ""));
+        viewHolder.dBreedTxt.setText(dogs[position].getBreed().replace("\"", ""));
+        viewHolder.dStatusTxt.setText(dogs[position].getStatus().replace("\"", ""));
         viewHolder.picture.setImageBitmap(
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeByteArray(dogs[position].getPhoto(), 0, dogs[position].getPhoto().length),
