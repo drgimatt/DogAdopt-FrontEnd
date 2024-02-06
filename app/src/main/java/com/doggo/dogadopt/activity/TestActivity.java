@@ -93,9 +93,11 @@ public class TestActivity extends AppCompatActivity {
         if (account.getRole().equals("ADMIN")){
             menu.add("View Requests");
             menu.add("Add a Dog");
+            menu.add("FAQ");
             menu.add("Logout");
         } else {
             menu.add("View Requests");
+            menu.add("FAQ");
             menu.add("Logout");
         }
 
@@ -107,12 +109,17 @@ public class TestActivity extends AppCompatActivity {
                         Toast.makeText(TestActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
+                        layout.closeDrawers();
                         Intent i = new Intent(getApplicationContext(), addActivity.class);
                         startActivity(i);
-                        layout.closeDrawers();
                     }
                     else if (item.getTitle().equals("Logout")){
-                       triggerLogout();
+                        triggerLogout();
+                    }
+                    else if (item.getTitle().equals("FAQ")){
+                        layout.closeDrawers();
+                        Intent i = new Intent(getApplicationContext(), faqActivity.class);
+                        startActivity(i);
                     }
 
                 return false;
