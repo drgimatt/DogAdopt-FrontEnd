@@ -111,6 +111,7 @@ public class startupActivity extends AppCompatActivity {
                                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
                                 i.putExtra("userID",acc.getMyId());
                                 i.putExtra("userType","ADMIN");
+                                i.putExtra("accountDetails",acc);
                                 startActivity(i);
                                 username.setText("");
                                 password.setText("");
@@ -122,6 +123,7 @@ public class startupActivity extends AppCompatActivity {
                                 Intent i = new Intent(getApplicationContext(), addActivity.class);
                                 i.putExtra("userID",acc.getMyId());
                                 i.putExtra("userType","USER");
+                                i.putExtra("accountDetails",acc);
                                 startActivity(i);
                                 username.setText("");
                                 password.setText("");

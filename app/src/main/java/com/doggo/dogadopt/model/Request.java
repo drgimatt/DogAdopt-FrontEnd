@@ -1,7 +1,8 @@
 package com.doggo.dogadopt.model;
 
+import java.io.Serializable;
 import java.util.Objects;
-public class Request {
+public class Request implements Serializable {
 
     private Long reqId;
 

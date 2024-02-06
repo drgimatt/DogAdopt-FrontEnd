@@ -1,10 +1,11 @@
 package com.doggo.dogadopt.model;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Dog {
+public class Dog implements Serializable {
 
 
     private Long id;

@@ -1,8 +1,9 @@
 package com.doggo.dogadopt.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable {
 
     private Long myId;
     private String firstName;

@@ -1,35 +1,46 @@
 package com.doggo.dogadopt.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.doggo.dogadopt.ListAdapter;
+import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.doggo.dogadopt.R;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 
-
     Long userID;
     ListView lView;
     ListAdapter lAdapter;
     QueryProcessor processor = new QueryProcessor();
+    private ActionBarDrawerToggle toggle;
+    private DrawerLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_final);
-        Button add_dog_btn = findViewById(R.id.admin_addDog_button);
+        //Button add_dog_btn = findViewById(R.id.admin_addDog_button);
         ProgressDialog progress = new ProgressDialog(this);
         //progress.setTitle("Generating List");
         progress.setMessage("Please wait...");
@@ -37,6 +48,7 @@ public class TestActivity extends AppCompatActivity {
         progress.show();
         Intent intent = getIntent();
         userID = intent.getLongExtra("userID",0);
+        Account acc = (Account) intent.getSerializableExtra("accountDetails");
         processor.DogReadAll();
         processor.setCbs(new CallBack() {
             @Override
@@ -49,16 +61,47 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        add_dog_btn.setOnClickListener(new View.OnClickListener() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View vi = inflater.inflate(R.layout.nav_header, null);
+
+        TextView fullname = vi.findViewById(R.id.fullname_menuLabel);
+        TextView usertype = vi.findViewById(R.id.usertype_menuLabel);
+
+        fullname.setText(acc.getFirstName() + acc.getLastName());
+        usertype.setText(acc.getRole());
+
+        layout = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, layout,R.string.nav_open,R.string.nav_close);
+
+        layout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_mainmenu);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), addActivity.class);
-                startActivity(i);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                return false;
             }
         });
 
-    }
 
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 
