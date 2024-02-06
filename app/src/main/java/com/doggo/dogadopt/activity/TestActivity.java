@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,9 +41,7 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_final);
-        //Button add_dog_btn = findViewById(R.id.admin_addDog_button);
         ProgressDialog progress = new ProgressDialog(this);
-        //progress.setTitle("Generating List");
         progress.setMessage("Please wait...");
         progress.setCancelable(false);
         progress.show();
@@ -64,11 +63,9 @@ public class TestActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View vi = inflater.inflate(R.layout.nav_header, null);
 
-        TextView fullname = vi.findViewById(R.id.fullname_menuLabel);
-        TextView usertype = vi.findViewById(R.id.usertype_menuLabel);
 
-        fullname.setText(acc.getFirstName() + acc.getLastName());
-        usertype.setText(acc.getRole());
+
+
 
         layout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, layout,R.string.nav_open,R.string.nav_close);
@@ -83,6 +80,13 @@ public class TestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        LinearLayout sideNavLayout = (LinearLayout) header.findViewById(R.id.nav_header);
+        TextView fullname = sideNavLayout.findViewById(R.id.fullname_menuLabel);
+        TextView usertype = sideNavLayout.findViewById(R.id.usertype_menuLabel);
+        fullname.setText(acc.getFirstName() + " " + acc.getLastName());
+        usertype.setText(acc.getRole());
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
