@@ -194,5 +194,26 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#16603D"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Add your centered footer text here -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2024 CityBarks Adoption"
+            android:textSize="14sp"
+            android:textColor="@android:color/white" /> <!-- Set text color as needed -->
+
+        <!-- Add more views as needed -->
+
+    </LinearLayout>
+
 
 </RelativeLayout>

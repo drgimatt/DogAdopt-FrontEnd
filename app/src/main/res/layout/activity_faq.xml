@@ -45,7 +45,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="CityBarks Adoption is a mobile platform that incourages dog lovers, looking gor a new best friend, to adopt our rescued dogs. Don't sop, adopt!"
+            android:text="CityBarks Adoption is a mobile platform that encourages dog lovers, looking for a new best friend, to adopt our rescued dogs. Don't sop, adopt!"
             android:textSize="16dp" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="Our dog adoption app provides a user-friendly interface to help you find the perfect furry companion. After logging in to your account, simply navigate to the dog records that will welcome you right away. Once you've found a dog you're interested in, you can view more details about them and send an inquiry directly through the app. "
+            android:text="CityBarks Adoption provides a user-friendly interface to help you find the perfect furry companion. After logging in to your account, simply navigate to the dog records that will welcome you right away. "
             android:textSize="16dp" />
 
         <TextView
@@ -97,6 +97,24 @@
             android:textSize="16dp" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="#16603D"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2024 CityBarks Adoption"
+            android:textSize="14sp"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>
