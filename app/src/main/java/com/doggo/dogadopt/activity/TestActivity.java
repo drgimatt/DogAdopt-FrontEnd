@@ -28,7 +28,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_temp);
+        setContentView(R.layout.activity_dash_final);
         Button add_dog_btn = findViewById(R.id.admin_addDog_button);
         ProgressDialog progress = new ProgressDialog(this);
         //progress.setTitle("Generating List");

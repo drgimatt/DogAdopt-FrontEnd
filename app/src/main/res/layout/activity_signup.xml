@@ -18,11 +18,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="353dp"
-                android:layout_height="145dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="143dp"
+                android:layout_gravity="center_horizontal"
                 android:src="@drawable/signup_header" />
 
             <com.google.android.material.textfield.TextInputLayout
