@@ -89,15 +89,15 @@ public class startupActivity extends AppCompatActivity {
                 public void returnResult(Object obj) {
                     List<Account> accList = (List<Account>) obj;
 
-                    for (Account acc: accList){
+                    for (Account acc : accList) {
                         if((acc.getUsername().equals(uname)) && (acc.getPassword().equals(pssword))){
                             Account user = acc;
                             SharedPreferences.Editor editor = sharedPref.edit();
                             if(persistentCredentials.isChecked()){
-                            editor.putString("username",username.getText().toString());
-                            editor.putString("password",password.getText().toString());
-                            editor.putBoolean("persistentLogin",true);
-                            editor.commit();
+                                editor.putString("username",username.getText().toString());
+                                editor.putString("password",password.getText().toString());
+                                editor.putBoolean("persistentLogin",true);
+                                editor.commit();
                             }
                             else{
                                 editor.remove("username");
@@ -105,38 +105,78 @@ public class startupActivity extends AppCompatActivity {
                                 editor.putBoolean("persistentLogin",false);
                                 editor.commit();
                             }
-                            if (user.getRole().equals("ADMIN")){
+                            if (user.getRole().equals("ADMIN") || acc.getRole().equals("USER")){
                                 hasCorrectCredentials = true;
-                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + user.getRole(), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
-                                i.putExtra("userID",acc.getMyId());
-                                i.putExtra("userType","ADMIN");
-                                i.putExtra("accountDetails",acc);
+                                i.putExtra("userID",user.getMyId());
+                                i.putExtra("accountDetails",user);
                                 startActivity(i);
                                 username.setText("");
                                 password.setText("");
                                 finish();
-
-                            } else if (user.getRole().equals("USER")){
-                                hasCorrectCredentials = true;
-                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), addActivity.class);
-                                i.putExtra("userID",acc.getMyId());
-                                i.putExtra("userType","USER");
-                                i.putExtra("accountDetails",acc);
-                                startActivity(i);
-                                username.setText("");
-                                password.setText("");
-                                finish();
-
-                            } else {
-                                Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
+                                break;
                             }
                         }
                     }
-                    if (hasCorrectCredentials == false){
-                        Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
-                    }
+
+
+
+
+
+
+
+
+//                    List<Account> accList = (List<Account>) obj;
+//
+//                    for (Account acc: accList){
+//                        if((acc.getUsername().equals(uname)) && (acc.getPassword().equals(pssword))){
+//                            Account user = acc;
+//                            SharedPreferences.Editor editor = sharedPref.edit();
+//                            if(persistentCredentials.isChecked()){
+//                            editor.putString("username",username.getText().toString());
+//                            editor.putString("password",password.getText().toString());
+//                            editor.putBoolean("persistentLogin",true);
+//                            editor.commit();
+//                            }
+//                            else{
+//                                editor.remove("username");
+//                                editor.remove("password");
+//                                editor.putBoolean("persistentLogin",false);
+//                                editor.commit();
+//                            }
+//                            if (user.getRole().equals("ADMIN")){
+//                                hasCorrectCredentials = true;
+//                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
+//                                Intent i = new Intent(getApplicationContext(), TestActivity.class);
+//                                i.putExtra("userID",acc.getMyId());
+//                                i.putExtra("userType","ADMIN");
+//                                i.putExtra("accountDetails",acc);
+//                                startActivity(i);
+//                                username.setText("");
+//                                password.setText("");
+//                                finish();
+//
+//                            } else if (user.getRole().equals("USER")){
+//                                hasCorrectCredentials = true;
+//                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
+//                                Intent i = new Intent(getApplicationContext(), addActivity.class);
+//                                i.putExtra("userID",acc.getMyId());
+//                                i.putExtra("userType","USER");
+//                                i.putExtra("accountDetails",acc);
+//                                startActivity(i);
+//                                username.setText("");
+//                                password.setText("");
+//                                finish();
+//
+//                            } else {
+//                                Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//                    if (hasCorrectCredentials == false){
+//                        Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
+//                    }
                 }
             });
 

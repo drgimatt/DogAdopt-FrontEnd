@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -88,17 +89,18 @@ public class ListAdapter extends BaseAdapter {
                         false
                 )
         );
-        if (userType == "ADMIN"){
+        Log.i("Info","Account Type sa Listview: " + userType);
+        if (userType.equals("ADMIN")){
             viewHolder.function.setText("EDIT");
-        } else if (userType == "USER") {
-            viewHolder.function.setText("VIEW");
+        } else if (userType.equals("USER")) {
+            viewHolder.function.setText("Get to know me!");
         }
 
         viewHolder.function.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
-                if (userType == "ADMIN"){
+                if (userType.equals("ADMIN")){
                     i = new Intent(context.getApplicationContext(), updateActivity.class);
                 } else {
                     i = new Intent(context.getApplicationContext(), viewActivity.class);

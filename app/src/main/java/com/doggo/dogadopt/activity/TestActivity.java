@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,13 +31,13 @@ import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 
-    Long userID;
     ListView lView;
     ListAdapter lAdapter;
     QueryProcessor processor = new QueryProcessor();
+    Account account;
     private ActionBarDrawerToggle toggle;
     private DrawerLayout layout;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +47,14 @@ public class TestActivity extends AppCompatActivity {
         progress.setCancelable(false);
         progress.show();
         Intent intent = getIntent();
-        userID = intent.getLongExtra("userID",0);
-        Account acc = (Account) intent.getSerializableExtra("accountDetails");
+        account = (Account) intent.getSerializableExtra("accountDetails");
         processor.DogReadAll();
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
                 List<Dog> dogList = (List<Dog>) obj;
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),"USER",userID);
+                lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
                 progress.dismiss();
             }
@@ -63,19 +63,13 @@ public class TestActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View vi = inflater.inflate(R.layout.nav_header, null);
 
-
-
-
-
         layout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, layout,R.string.nav_open,R.string.nav_close);
 
         layout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        Toolbar toolbar = findViewById(R.id.toolbar_mainmenu);
+        toolbar = findViewById(R.id.toolbar_mainmenu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -84,8 +78,13 @@ public class TestActivity extends AppCompatActivity {
         LinearLayout sideNavLayout = (LinearLayout) header.findViewById(R.id.nav_header);
         TextView fullname = sideNavLayout.findViewById(R.id.fullname_menuLabel);
         TextView usertype = sideNavLayout.findViewById(R.id.usertype_menuLabel);
-        fullname.setText(acc.getFirstName() + " " + acc.getLastName());
-        usertype.setText(acc.getRole());
+        fullname.setText(account.getFirstName() + " " + account.getLastName());
+        usertype.setText(account.getRole());
+
+        //Menu menu = navigationView.getMenu();
+
+
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -94,8 +93,6 @@ public class TestActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
 
     }
     @Override
