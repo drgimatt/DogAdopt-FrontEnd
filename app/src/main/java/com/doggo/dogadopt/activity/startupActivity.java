@@ -57,7 +57,7 @@ public class startupActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
-                        Toast.makeText(startupActivity.this,"Please enter credentials", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(startupActivity.this,"Please enter credentials.", Toast.LENGTH_SHORT).show();
                     } else {
                         checkAccount(username.getText().toString(),password.getText().toString(),sharedPref);
                     }
@@ -67,12 +67,10 @@ public class startupActivity extends AppCompatActivity {
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(startupActivity.this,"You have pressed the Signup button.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), signupActivity.class);
                     startActivity(i);
                 }
             });
-
 
         }
 
@@ -80,7 +78,6 @@ public class startupActivity extends AppCompatActivity {
             hasCorrectCredentials = false;
             queryProcessor = new QueryProcessor();
             queryProcessor.AccountReadAll();
-
             if(username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
                 Toast.makeText(startupActivity.this,"Please enter credentials", Toast.LENGTH_SHORT).show();
             } else {
@@ -121,61 +118,6 @@ public class startupActivity extends AppCompatActivity {
                             }
                         }
                     }
-
-
-
-
-
-
-
-
-//                    List<Account> accList = (List<Account>) obj;
-//
-//                    for (Account acc: accList){
-//                        if((acc.getUsername().equals(uname)) && (acc.getPassword().equals(pssword))){
-//                            Account user = acc;
-//                            SharedPreferences.Editor editor = sharedPref.edit();
-//                            if(persistentCredentials.isChecked()){
-//                            editor.putString("username",username.getText().toString());
-//                            editor.putString("password",password.getText().toString());
-//                            editor.putBoolean("persistentLogin",true);
-//                            editor.commit();
-//                            }
-//                            else{
-//                                editor.remove("username");
-//                                editor.remove("password");
-//                                editor.putBoolean("persistentLogin",false);
-//                                editor.commit();
-//                            }
-//                            if (user.getRole().equals("ADMIN")){
-//                                hasCorrectCredentials = true;
-//                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-//                                Intent i = new Intent(getApplicationContext(), TestActivity.class);
-//                                i.putExtra("userID",acc.getMyId());
-//                                i.putExtra("userType","ADMIN");
-//                                i.putExtra("accountDetails",acc);
-//                                startActivity(i);
-//                                username.setText("");
-//                                password.setText("");
-//                                finish();
-//
-//                            } else if (user.getRole().equals("USER")){
-//                                hasCorrectCredentials = true;
-//                                Toast.makeText(startupActivity.this,"Login successful." + " Account Type: " + acc.getRole(), Toast.LENGTH_SHORT).show();
-//                                Intent i = new Intent(getApplicationContext(), addActivity.class);
-//                                i.putExtra("userID",acc.getMyId());
-//                                i.putExtra("userType","USER");
-//                                i.putExtra("accountDetails",acc);
-//                                startActivity(i);
-//                                username.setText("");
-//                                password.setText("");
-//                                finish();
-//
-//                            } else {
-//                                Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
                     if (hasCorrectCredentials == false){
                         Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
                     }

@@ -1,7 +1,9 @@
 package com.doggo.dogadopt.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,7 +103,6 @@ public class TestActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (account.getRole().equals("ADMIN")){
                     if (item.getTitle().equals("View Requests")){
                         Toast.makeText(TestActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                     }
@@ -111,21 +112,9 @@ public class TestActivity extends AppCompatActivity {
                         layout.closeDrawers();
                     }
                     else if (item.getTitle().equals("Logout")){
-                        Toast.makeText(TestActivity.this,"Assume that there is a logout function", Toast.LENGTH_SHORT).show();
-                    }else{
+                       triggerLogout();
+                    }
 
-                    }
-                }
-                else{
-                    if (item.getTitle().equals("View Requests")){
-                        Toast.makeText(TestActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (item.getTitle().equals("Logout")){
-                        Toast.makeText(TestActivity.this,"Assume that there is a logout function", Toast.LENGTH_SHORT).show();
-                    }else{
-
-                    }
-                }
                 return false;
             }
         });
@@ -140,7 +129,28 @@ public class TestActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
+    public void triggerLogout(){
+        AlertDialog.Builder frameBuilder = new AlertDialog.Builder(this);
+            frameBuilder.setCancelable(true);
+            frameBuilder.setTitle("Logout");
+            frameBuilder.setMessage("Do you want to logout?");
+            frameBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent i = new Intent(getApplicationContext(), startupActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+            frameBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+        AlertDialog dialog = frameBuilder.create();
+        dialog.show();
+        layout.closeDrawers();
+}
 
 }
