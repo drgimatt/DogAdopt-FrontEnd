@@ -99,21 +99,20 @@ public class dashActivity extends AppCompatActivity {
 
         Menu menu = navigationView.getMenu();
         if (account.getRole().equals("ADMIN")){
-            menu.add("View Requests");
             menu.add("Add a Dog");
-            menu.add("FAQ");
-            menu.add("Logout");
-        } else {
-            menu.add("View Requests");
-            menu.add("FAQ");
-            menu.add("Logout");
         }
+        menu.add("View Requests");
+        menu.add("Reload List");
+        menu.add("FAQ");
+        menu.add("Logout");
+
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     if (item.getTitle().equals("View Requests")){
+                        layout.closeDrawers();
                         Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
@@ -121,7 +120,24 @@ public class dashActivity extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), addActivity.class);
                         startActivity(i);
                     }
+                    else if (item.getTitle().equals("Reload List")){
+                        layout.closeDrawers();
+                        LoadingDialog progress = new LoadingDialog(dashActivity.this);
+                        progress.startLoadingAnimation();
+                        processor.DogReadAll();
+                        processor.setCbs(new CallBack() {
+                            @Override
+                            public void returnResult(Object obj) {
+                                List<Dog> dogList = (List<Dog>) obj;
+                                lView = (ListView) findViewById(R.id.dogList);
+                                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                                lView.setAdapter(lAdapter);
+                                progress.dismissAnimation();
+                            }
+                        });
+                    }
                     else if (item.getTitle().equals("Logout")){
+                        layout.closeDrawers();
                         triggerLogout();
                     }
                     else if (item.getTitle().equals("FAQ")){
