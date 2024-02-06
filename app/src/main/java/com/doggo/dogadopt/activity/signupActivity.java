@@ -1,6 +1,10 @@
 package com.doggo.dogadopt.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +58,35 @@ public class signupActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if((keyCode == KeyEvent.KEYCODE_BACK)) {
+            triggerCancel();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    void triggerCancel(){
+        AlertDialog.Builder frameBuilder = new AlertDialog.Builder(this);
+        frameBuilder.setCancelable(true);
+        frameBuilder.setTitle("Cancel Signup");
+        frameBuilder.setMessage("Do you want to cancel signup?");
+        frameBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        frameBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = frameBuilder.create();
+        dialog.show();
     }
 
     void perform_signup(){
