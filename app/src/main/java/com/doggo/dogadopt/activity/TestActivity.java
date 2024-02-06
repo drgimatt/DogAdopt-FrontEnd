@@ -22,10 +22,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.doggo.dogadopt.ListAdapter;
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -45,10 +47,13 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_final);
-        ProgressDialog progress = new ProgressDialog(this);
-        progress.setMessage("Please wait...");
-        progress.setCancelable(false);
-        progress.show();
+        LoadingDialog progress = new LoadingDialog(TestActivity.this);
+        progress.startLoadingAnimation();
+
+//        ProgressDialog progress = new ProgressDialog(this);
+//        progress.setMessage("Please wait...");
+//        progress.setCancelable(false);
+//        progress.show();
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("accountDetails");
         processor.DogReadAll();
@@ -59,7 +64,8 @@ public class TestActivity extends AppCompatActivity {
                 lView = (ListView) findViewById(R.id.dogList);
                 lAdapter = new ListAdapter(TestActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
-                progress.dismiss();
+                //progress.dismiss();
+                progress.dismissAnimation();
             }
         });
 
@@ -90,8 +96,6 @@ public class TestActivity extends AppCompatActivity {
             menu.add("View Requests");
             menu.add("Logout");
         }
-
-
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
