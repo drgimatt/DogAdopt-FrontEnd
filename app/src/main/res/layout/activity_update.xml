@@ -17,12 +17,12 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="182dp"
-            android:layout_height="48dp"
+            android:layout_width="378dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:scaleX="2"
             android:scaleY="2"
-            android:src="@drawable/updatedogheader" />
+            android:src="@drawable/update_header" />
 
         <LinearLayout
             android:layout_width="match_parent"

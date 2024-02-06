@@ -16,10 +16,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="201dp"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="143dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/viewdogheader" />
+            android:src="@drawable/view_header" />
 
         <LinearLayout
             android:layout_width="match_parent"
