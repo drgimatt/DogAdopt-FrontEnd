@@ -39,7 +39,8 @@
 
                     android:id="@+id/signup_firstNameField"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +61,8 @@
 
                     android:id="@+id/signup_lastNameField"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
@@ -154,7 +156,8 @@
 
                     android:id="@+id/signup_usernameField"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -177,7 +180,8 @@
                     android:id="@+id/signup_passwordField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

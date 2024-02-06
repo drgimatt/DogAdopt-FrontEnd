@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -38,6 +40,7 @@ public class TestActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private DrawerLayout layout;
     private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +63,6 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View vi = inflater.inflate(R.layout.nav_header, null);
-
         layout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, layout,R.string.nav_open,R.string.nav_close);
 
@@ -81,7 +81,15 @@ public class TestActivity extends AppCompatActivity {
         fullname.setText(account.getFirstName() + " " + account.getLastName());
         usertype.setText(account.getRole());
 
-        //Menu menu = navigationView.getMenu();
+        Menu menu = navigationView.getMenu();
+        if (account.getRole().equals("ADMIN")){
+            menu.add("View Requests");
+            menu.add("Add a Dog");
+            menu.add("Logout");
+        } else {
+            menu.add("View Requests");
+            menu.add("Logout");
+        }
 
 
 
@@ -89,7 +97,31 @@ public class TestActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (account.getRole().equals("ADMIN")){
+                    if (item.getTitle().equals("View Requests")){
+                        Toast.makeText(TestActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(item.getTitle().equals("Add a Dog")){
+                        Intent i = new Intent(getApplicationContext(), addActivity.class);
+                        startActivity(i);
+                        layout.closeDrawers();
+                    }
+                    else if (item.getTitle().equals("Logout")){
+                        Toast.makeText(TestActivity.this,"Assume that there is a logout function", Toast.LENGTH_SHORT).show();
+                    }else{
 
+                    }
+                }
+                else{
+                    if (item.getTitle().equals("View Requests")){
+                        Toast.makeText(TestActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (item.getTitle().equals("Logout")){
+                        Toast.makeText(TestActivity.this,"Assume that there is a logout function", Toast.LENGTH_SHORT).show();
+                    }else{
+
+                    }
+                }
                 return false;
             }
         });
