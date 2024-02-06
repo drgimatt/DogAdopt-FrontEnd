@@ -8,8 +8,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import android.app.DatePickerDialog;
@@ -20,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -55,7 +57,7 @@ public class addActivity extends AppCompatActivity {
         DAge = findViewById(R.id.dogAge);
         DBreed = findViewById(R.id.dogBreed);
         DogPersonal = findViewById(R.id.dogPersonality);
-        addDog_button = (Button) findViewById(R.id.addDog_button);
+        addDog_button = (Button) findViewById(R.id.admin_addDog_button);
         DStatus = findViewById(R.id.dogStatus);
         calendar = Calendar.getInstance();
 
@@ -77,6 +79,18 @@ public class addActivity extends AppCompatActivity {
                 byte[] imageInByte = baos.toByteArray();
 
                 processor.DogAdd(imageInByte,DName.getText().toString(),DBreed.getText().toString(),DAge.getText().toString(),dogDOAEditText.getText().toString(),DogPersonal.getText().toString(),DStatus.getSelectedItem().toString(),DGender.getSelectedItem().toString());
+
+                processor.setCbs(new CallBack() {
+                    @Override
+                    public void returnResult(Object obj) {
+                        if ((boolean) obj == true){
+                            Toast.makeText(addActivity.this,"Dog addition is successful.", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else if ((boolean) obj == false){
+                            Toast.makeText(addActivity.this,"Dog addition is unsuccessful. Please try again", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
             }
         });

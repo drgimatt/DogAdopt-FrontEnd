@@ -5,7 +5,7 @@ import android.util.Log;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.model.Request;
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +46,13 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Dog> call, Response<Dog> response) {
                 Log.i("Success", "Process completed " + response.body());
+                cbs.returnResult(true);
             }
 
             @Override
             public void onFailure(Call<Dog> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(false);
             }
         });
     }
@@ -70,11 +72,13 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Dog> call, Response<Dog> response) {
                 Log.i("Success", "Process completed " + response.body());
+                cbs.returnResult(true);
             }
 
             @Override
             public void onFailure(Call<Dog> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(false);
             }
         });
     }
@@ -138,11 +142,13 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 Log.i("Success", "Process completed " + response.body());
+                cbs.returnResult(true);
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(false);
             }
         });
     }
@@ -161,11 +167,13 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 Log.i("Success", "Process completed " + response.body());
+                cbs.returnResult(true);
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(false);
             }
         });
     }
@@ -225,11 +233,13 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Request> call, Response<Request> response) {
                 Log.i("Success", "Process completed " + response.body());
+                cbs.returnResult(true);
             }
 
             @Override
             public void onFailure(Call<Request> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(false);
             }
         });
     };
@@ -246,11 +256,13 @@ public class QueryProcessor {
             @Override
             public void onResponse(Call<Request> call, Response<Request> response) {
                 Log.i("Success", "Process completed " + response.body());
+                cbs.returnResult(true);
             }
 
             @Override
             public void onFailure(Call<Request> call, Throwable t) {
                 Log.e("Failure","Process not completed " ,t);
+                cbs.returnResult(false);
             }
         });
     };

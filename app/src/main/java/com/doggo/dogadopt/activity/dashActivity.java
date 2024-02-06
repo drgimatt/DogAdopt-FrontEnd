@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 
 public class dashActivity extends AppCompatActivity {
     @Override

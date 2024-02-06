@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.doggo.dogadopt.activity.updateActivity;
 import com.doggo.dogadopt.activity.viewActivity;
 import com.doggo.dogadopt.model.Dog;
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 
 import org.jetbrains.annotations.NotNull;
 

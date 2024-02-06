@@ -18,7 +18,7 @@ import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.model.Request;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class viewActivity extends AppCompatActivity {

@@ -2,11 +2,11 @@ package com.doggo.dogadopt.activity;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class requstActivity extends AppCompatActivity {
+public class requestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

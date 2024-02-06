@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 
 public class AnimationUtility {
     private static AnimationUtility s_instance;

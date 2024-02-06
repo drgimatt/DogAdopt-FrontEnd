@@ -1,13 +1,15 @@
+import org.apache.tools.ant.util.JavaEnvUtils.VERSION_11
+
 plugins {
     id("com.android.application")
 }
 
 android {
-    namespace = "com.escandor.dogadopt"
+    namespace = "com.doggo.dogadopt"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.escandor.dogadopt"
+        applicationId = "com.doggo.dogadopt"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -23,8 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

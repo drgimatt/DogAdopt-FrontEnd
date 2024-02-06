@@ -3,6 +3,8 @@ package com.doggo.dogadopt.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +13,7 @@ import com.doggo.dogadopt.ListAdapter;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_temp);
+        Button add_dog_btn = findViewById(R.id.admin_addDog_button);
         ProgressDialog progress = new ProgressDialog(this);
         //progress.setTitle("Generating List");
         progress.setMessage("Please wait...");
@@ -46,15 +49,16 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-
+        add_dog_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), addActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
-    private void initializeComponents(){
-
-
-
-    }
 
 
 

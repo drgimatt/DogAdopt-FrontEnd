@@ -16,10 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
-import com.escandor.dogadopt.R;
+import com.doggo.dogadopt.R;
 
 import java.util.List;
-import java.util.prefs.Preferences;
 
 public class startupActivity extends AppCompatActivity {
 
@@ -43,10 +42,10 @@ public class startupActivity extends AppCompatActivity {
         private void initializeComponents(SharedPreferences sharedPref) {
 
 
-            username = findViewById(R.id.usernameField);
-            password = findViewById(R.id.passwordField);
+            username = findViewById(R.id.login_usernameField);
+            password = findViewById(R.id.login_passwordField);
             login = findViewById(R.id.login_button);
-            register = findViewById(R.id.signup_button);
+            register = findViewById(R.id.signup_submit_button);
             persistentCredentials = findViewById(R.id.persistent_signin);
             persistentCredentials.setChecked(sharedPref.getBoolean("persistentLogin",true));
             username.setText(sharedPref.getString("username",""));
@@ -69,7 +68,7 @@ public class startupActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(startupActivity.this,"You have pressed the Signup button.", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(), updateActivity.class);
+                    Intent i = new Intent(getApplicationContext(), signupActivity.class);
                     startActivity(i);
                 }
             });
@@ -112,6 +111,8 @@ public class startupActivity extends AppCompatActivity {
                                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
                                 i.putExtra("userID",acc.getMyId());
                                 startActivity(i);
+                                username.setText("");
+                                password.setText("");
                                 finish();
 
                             } else if (user.getRole().equals("USER")){
@@ -120,6 +121,8 @@ public class startupActivity extends AppCompatActivity {
                                 Intent i = new Intent(getApplicationContext(), addActivity.class);
                                 i.putExtra("userID",acc.getMyId());
                                 startActivity(i);
+                                username.setText("");
+                                password.setText("");
                                 finish();
 
                             } else {

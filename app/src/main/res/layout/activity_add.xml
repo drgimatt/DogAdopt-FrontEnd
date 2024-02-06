@@ -177,7 +177,7 @@
 
 
         <Button
-            android:id="@+id/addDog_button"
+            android:id="@+id/admin_addDog_button"
             android:layout_width="141dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
