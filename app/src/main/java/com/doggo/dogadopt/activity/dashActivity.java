@@ -3,7 +3,9 @@ package com.doggo.dogadopt.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -36,6 +38,7 @@ public class dashActivity extends AppCompatActivity {
 
     ListView lView;
     ListAdapter lAdapter;
+    List<Dog> dogList;
     QueryProcessor processor = new QueryProcessor();
     Account account;
     private ActionBarDrawerToggle toggle;
@@ -51,7 +54,7 @@ public class dashActivity extends AppCompatActivity {
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
-                List<Dog> dogList = (List<Dog>) obj;
+                dogList = (List<Dog>) obj;
                 Collections.sort(dogList, new Comparator<Dog>() {
                     @Override
                     public int compare(Dog o1, Dog o2) {
@@ -73,6 +76,9 @@ public class dashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
+
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         LoadingDialog progress = new LoadingDialog(dashActivity.this);
         progress.startLoadingAnimation();
 
@@ -82,7 +88,7 @@ public class dashActivity extends AppCompatActivity {
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
-                List<Dog> dogList = (List<Dog>) obj;
+                dogList = (List<Dog>) obj;
                 Collections.sort(dogList, new Comparator<Dog>() {
                     @Override
                     public int compare(Dog o1, Dog o2) {
@@ -161,7 +167,7 @@ public class dashActivity extends AppCompatActivity {
                         processor.setCbs(new CallBack() {
                             @Override
                             public void returnResult(Object obj) {
-                                List<Dog> dogList = (List<Dog>) obj;
+                                dogList = (List<Dog>) obj;
                                 Collections.sort(dogList, new Comparator<Dog>() {
                                     @Override
                                     public int compare(Dog o1, Dog o2) {
