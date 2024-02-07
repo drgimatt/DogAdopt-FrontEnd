@@ -246,6 +246,7 @@ public class QueryProcessor {
 
     public void RequestUpdate(Long reqID, Long dogID, Long userID, String contact, String message, String name, String status){
         Request request = new Request();
+        request.setReqId(reqID);
         request.setDogId(dogID);
         request.setUserId(userID);
         request.setReqContact(contact);

@@ -99,6 +99,7 @@ public class RequestListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context.getApplicationContext(), resolvereqActivity.class);
+                i.putExtra("reqId",requests[position].getReqId());
                 context.startActivity(i);
             }
         });
