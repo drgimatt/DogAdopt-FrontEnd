@@ -1,16 +1,15 @@
 package com.doggo.dogadopt.activity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.doggo.dogadopt.DogListAdapter;
 import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.R;
 import com.doggo.dogadopt.RequestListAdapter;
+import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.model.Request;
 import com.doggo.dogadopt.retrofit.CallBack;
@@ -24,13 +23,16 @@ public class allrequestActivity extends AppCompatActivity{
     RequestListAdapter rListAdapter;
     List<Request> requestList;
     List<Dog> dogList;
+    Account account;
     QueryProcessor processor = new QueryProcessor();
     LoadingDialog progress = new LoadingDialog(allrequestActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_request_admin);
+        setContentView(R.layout.activity_view_request);
+        Intent intent = getIntent();
+        account = (Account) intent.getSerializableExtra("account");
         progress.startLoadingAnimation("Initializing data...");
         processor.RequestReadAll();
         processor.setCbs(new CallBack() {
@@ -46,7 +48,7 @@ public class allrequestActivity extends AppCompatActivity{
             public void returnResult(Object obj) {
                 dogList = (List<Dog>) obj;
                 lView = findViewById(R.id.requestList);
-                rListAdapter = new RequestListAdapter(allrequestActivity.this, requestList.toArray(new Request[0]), dogList.toArray(new Dog[0]));
+                rListAdapter = new RequestListAdapter(allrequestActivity.this, requestList.toArray(new Request[0]), dogList.toArray(new Dog[0]), account);
                 lView.setAdapter(rListAdapter);
                 progress.dismissAnimation();
             }

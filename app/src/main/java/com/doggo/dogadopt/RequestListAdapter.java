@@ -17,10 +17,14 @@ import com.doggo.dogadopt.activity.resolvereqActivity;
 import com.doggo.dogadopt.activity.startupActivity;
 import com.doggo.dogadopt.activity.updateActivity;
 import com.doggo.dogadopt.activity.viewActivity;
+import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
 import com.doggo.dogadopt.model.Request;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestListAdapter extends BaseAdapter {
 
@@ -28,11 +32,13 @@ public class RequestListAdapter extends BaseAdapter {
     private Request[] requests;
     private Dog[] dogs;
 
+    private Account account;
 
-    public RequestListAdapter(Context context, Request[] requests, Dog[] dogs) {
+    public RequestListAdapter(Context context, Request[] requests, Dog[] dogs, Account account) {
         this.context = context;
         this.requests = requests;
         this.dogs = dogs;
+        this.account = account;
     }
 
     @Override
@@ -48,6 +54,17 @@ public class RequestListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public List<Request> searchRequests(List<Request> unfilteredRequests, Long query){
+        List<Request> filteredRequests = new ArrayList<>();
+
+        for (Request utos: unfilteredRequests){
+            if (utos.getUserId().equals(query)){
+                filteredRequests.add(utos);
+            }
+        }
+        return filteredRequests;
     }
 
     @NotNull
@@ -76,6 +93,7 @@ public class RequestListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
+
 
         for (Dog dog : dogs){
 

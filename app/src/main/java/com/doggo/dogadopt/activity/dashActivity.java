@@ -114,6 +114,7 @@ public class dashActivity extends AppCompatActivity {
                         layout.closeDrawers();
                         //Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), allrequestActivity.class);
+                        i.putExtra("account",account);
                         startActivity(i);
                     }
                     else if(item.getTitle().equals("Sort List")){
