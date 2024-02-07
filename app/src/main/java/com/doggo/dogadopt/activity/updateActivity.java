@@ -43,6 +43,7 @@ public class updateActivity extends AppCompatActivity {
     private EditText dogDOAEditText;
     private TextInputEditText DogPersonal;
     private Button updateDog_button;
+    private Button deleteDog_button;
     private Calendar calendar;
     private Long DogID;
     int SELECT_PICTURE = 200;
@@ -67,6 +68,7 @@ public class updateActivity extends AppCompatActivity {
         DBreed = findViewById(R.id.asoBreed);
         DogPersonal = findViewById(R.id.asoPersonality);
         updateDog_button = (Button) findViewById(R.id.updateAso_button);
+        deleteDog_button = (Button) findViewById(R.id.deleteAso_button);
         DStatus = findViewById(R.id.asoStatus);
         calendar = Calendar.getInstance();
 
@@ -104,6 +106,13 @@ public class updateActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        deleteDog_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //implement delete here
             }
         });
 

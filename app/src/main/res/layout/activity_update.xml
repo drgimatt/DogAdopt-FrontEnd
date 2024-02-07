@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="6dp"
         android:orientation="vertical"
         android:weightSum="50">
 
@@ -180,17 +180,29 @@
             android:entries="@array/dogStatusSpin"
             android:textSize="11.5sp" />
 
-
-        <Button
-            android:id="@+id/updateAso_button"
-            android:layout_width="141dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/btn_bg"
-            android:text="Update Dog" />
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/updateAso_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Update Record" />
+
+            <Button
+                android:id="@+id/deleteAso_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/btn_danger"
+                android:text="Delete Record" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
