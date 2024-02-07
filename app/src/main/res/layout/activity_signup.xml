@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="146dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-5dp"
+        android:src="@drawable/signup_header" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,16 +20,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="146dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-5dp"
-                android:src="@drawable/signup_header" />
+            android:orientation="vertical"
+            android:layout_marginTop="130dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/TextInputLayout"
