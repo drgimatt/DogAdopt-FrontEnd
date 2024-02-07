@@ -34,6 +34,8 @@
         <activity android:name="com.doggo.dogadopt.activity.updateActivity" />
         <activity android:name="com.doggo.dogadopt.activity.requestActivity" />
         <activity android:name="com.doggo.dogadopt.activity.signupActivity" />
+        <activity android:name="com.doggo.dogadopt.activity.allrequestActivity" />
+        <activity android:name="com.doggo.dogadopt.activity.resolvereqActivity" />
     </application>
 
 </manifest>

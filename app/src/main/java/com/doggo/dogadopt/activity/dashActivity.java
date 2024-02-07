@@ -5,14 +5,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
@@ -30,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.doggo.dogadopt.ListAdapter;
+import com.doggo.dogadopt.DogListAdapter;
 import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.model.Dog;
@@ -48,7 +43,7 @@ public class dashActivity extends AppCompatActivity {
     String type = "Name";
     String order = "Ascending";
     ListView lView;
-    ListAdapter lAdapter;
+    DogListAdapter lAdapter;
     List<Dog> dogList;
     QueryProcessor processor = new QueryProcessor();
     LoadingDialog progress = new LoadingDialog(dashActivity.this);
@@ -123,7 +118,9 @@ public class dashActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     if (item.getTitle().equals("View Requests")){
                         layout.closeDrawers();
-                        Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(), allrequestActivity.class);
+                        startActivity(i);
                     }
                     else if(item.getTitle().equals("Sort List")){
                         showSortDialog();
@@ -232,7 +229,7 @@ public class dashActivity extends AppCompatActivity {
                 dogList = (List<Dog>) obj;
                 dogList = sortDogs(dogList,type,order);
                 lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                lAdapter = new DogListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
                 progress.dismissAnimation();
             }
@@ -241,7 +238,7 @@ public class dashActivity extends AppCompatActivity {
         else{
             dogList = sortDogs(dogList,type,order);
             lView = (ListView) findViewById(R.id.dogList);
-            lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+            lAdapter = new DogListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
             lView.setAdapter(lAdapter);
             progress.dismissAnimation();
         }

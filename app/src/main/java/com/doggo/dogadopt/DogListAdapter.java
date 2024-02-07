@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,11 +15,10 @@ import android.widget.Button;
 import com.doggo.dogadopt.activity.updateActivity;
 import com.doggo.dogadopt.activity.viewActivity;
 import com.doggo.dogadopt.model.Dog;
-import com.doggo.dogadopt.R;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ListAdapter extends BaseAdapter {
+public class DogListAdapter extends BaseAdapter {
 
     Context context;
     private Dog[] dogs;
@@ -28,7 +26,7 @@ public class ListAdapter extends BaseAdapter {
     private String userType;
     private Long userID;
 
-    public ListAdapter(Context context, Dog[] dogs, String userType, Long userID) {
+    public DogListAdapter(Context context, Dog[] dogs, String userType, Long userID) {
         this.context = context;
         this.dogs = dogs;
         this.userType = userType;
