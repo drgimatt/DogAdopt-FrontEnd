@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="149dp"
+            android:layout_height="147dp"
             app:srcCompat="@drawable/upreq_header" />
 
         <TextView

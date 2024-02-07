@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="com.doggo.dogadopt.activity.viewActivity">
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="145dp"
-        android:layout_height="49dp"
+        android:layout_width="142dp"
+        android:layout_height="61dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="133dp"
         android:layout_marginTop="44dp"
