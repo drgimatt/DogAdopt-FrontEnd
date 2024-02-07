@@ -28,9 +28,10 @@ public class RequestListAdapter extends BaseAdapter {
     private Dog[] dogs;
 
 
-    public RequestListAdapter(Context context, Request[] requests) {
+    public RequestListAdapter(Context context, Request[] requests, Dog[] dogs) {
         this.context = context;
         this.requests = requests;
+        this.dogs = dogs;
     }
 
     @Override
@@ -75,7 +76,17 @@ public class RequestListAdapter extends BaseAdapter {
             result = convertView;
         }
 
-        viewHolder.rdogIDTxt.setText(Math.toIntExact(requests[position].getDogId()));
+        for (Dog dog : dogs){
+
+            String name ="";
+            if (dog.getId().equals(requests[position].getDogId())){
+                name = "For "+dog.getName().replace("\"", "");
+                viewHolder.dNameTxt.setText(name);
+            }
+
+        };
+
+        viewHolder.rdogIDTxt.setText("Dog ID: " +Integer.toString(Math.toIntExact(requests[position].getDogId())));
         viewHolder.reqStatusTxt.setText(requests[position].getReqStatus().replace("\"", ""));
 
         viewHolder.resolveRequest.setOnClickListener(new View.OnClickListener() {

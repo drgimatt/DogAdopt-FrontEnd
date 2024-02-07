@@ -131,7 +131,7 @@ public class Request implements Serializable {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Request {");
         sb.append("id=").append(reqId);
-        sb.append(", dog=").append(dogId);
+        sb.append(", dogId=").append(dogId);
         sb.append(", userid=").append(userId);
         sb.append(", name='").append(reqName).append('\'');
         sb.append(", contact='").append(reqContact).append('\'');
