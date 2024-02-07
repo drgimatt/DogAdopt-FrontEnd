@@ -5,12 +5,17 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,6 +44,8 @@ import java.util.List;
 
 public class dashActivity extends AppCompatActivity {
 
+    String type = "Name";
+    String order = "Ascending";
     ListView lView;
     ListAdapter lAdapter;
     List<Dog> dogList;
@@ -52,7 +59,7 @@ public class dashActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        reloadList("Reloading data...");
+        reloadList("Reloading data...", true);
 
     }
     @Override
@@ -64,7 +71,7 @@ public class dashActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("accountDetails");
-        reloadList("Initializing data...");
+        reloadList("Initializing data...", true);
 
         layout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, layout,R.string.nav_open,R.string.nav_close);
@@ -93,6 +100,12 @@ public class dashActivity extends AppCompatActivity {
 
         Menu menu = navigationView.getMenu();
         SubMenu sb = menu.addSubMenu("Administrative Functions");
+//        SpannableString test = new SpannableString("Administrative Functions");
+//        test.setSpan(new ForegroundColorSpan(Color.YELLOW),0, test.length(),0);
+//        sb.setHeaderTitle(test);
+//        TextView test = (TextView) sb.getItem();
+//        test.setTextColor(Color.YELLOW);
+
         sb.add("Add a Dog");
         SubMenu sb2 = menu.addSubMenu("Testing purposes only");
         sb2.add("Sort List");
@@ -112,7 +125,6 @@ public class dashActivity extends AppCompatActivity {
                         Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                     }
                     else if(item.getTitle().equals("Sort List")){
-                        Toast.makeText(dashActivity.this,"Assume that we can sort lists.", Toast.LENGTH_SHORT).show();
                         showSortDialog();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
@@ -122,7 +134,7 @@ public class dashActivity extends AppCompatActivity {
                     }
                     else if (item.getTitle().equals("Reload List")){
                         layout.closeDrawers();
-                        reloadList("Reloading data...");
+                        reloadList("Reloading data...", true);
                     }
                     else if (item.getTitle().equals("Logout")){
                         layout.closeDrawers();
@@ -139,6 +151,7 @@ public class dashActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -172,25 +185,65 @@ public class dashActivity extends AppCompatActivity {
         layout.closeDrawers();
 }
 
-    private void reloadList(String text){
+    private List<Dog> sortDogs(List<Dog> dogList, String type, String order){
+
+        Collections.sort(dogList, new Comparator<Dog>() {
+            @Override
+            public int compare(Dog o1, Dog o2) {
+
+                String value1 = getValueForComparison(o1, type);
+                String value2 = getValueForComparison(o2, type);
+
+                int result;
+
+                if(order.equals("Ascending")){
+                    result = value1.compareToIgnoreCase(value2);
+                } else{
+                    result = value2.compareToIgnoreCase(value1);
+                }
+                return result;
+            }
+        });
+        return dogList;
+
+    }
+
+    private String getValueForComparison(Dog dog, String type){
+        switch (type){
+            case "Name":
+                return dog.getName().replace("\"", "");
+            case "Breed":
+                return dog.getBreed().replace("\"", "");
+            case "Status":
+                return dog.getStatus().replace("\"", "");
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
+    }
+
+    private void reloadList(String text, boolean fetch){
         progress.startLoadingAnimation(text);
+        if(fetch){
         processor.DogReadAll();
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
                 dogList = (List<Dog>) obj;
-                Collections.sort(dogList, new Comparator<Dog>() {
-                    @Override
-                    public int compare(Dog o1, Dog o2) {
-                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
-                    }
-                });
+                dogList = sortDogs(dogList,type,order);
                 lView = (ListView) findViewById(R.id.dogList);
                 lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
                 progress.dismissAnimation();
             }
         });
+        }
+        else{
+            dogList = sortDogs(dogList,type,order);
+            lView = (ListView) findViewById(R.id.dogList);
+            lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+            lView.setAdapter(lAdapter);
+            progress.dismissAnimation();
+        }
     }
 
     private void showSortDialog(){
@@ -200,15 +253,26 @@ public class dashActivity extends AppCompatActivity {
         //dialog.getWindow().setBackgroundDrawable();
 
         Spinner orderSpin = dialog.findViewById(R.id.orderSort);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.UpDownSortSpin, android.R.layout.simple_spinner_item);
+        orderSpin.setAdapter(adapter);
+        int spinnerPosition = adapter.getPosition(order);
+        orderSpin.setSelection(spinnerPosition);
         Spinner typeSpin = dialog.findViewById(R.id.TypeSort);
-
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.TypeSortSpin, android.R.layout.simple_spinner_item);
+        typeSpin.setAdapter(adapter2);
+        int spinnerPosition2 = adapter2.getPosition(type);
+        typeSpin.setSelection(spinnerPosition2);
         Button sortBtn = dialog.findViewById(R.id.OKSort);
         Button cancelBtn = dialog.findViewById(R.id.CancelSort);
 
         sortBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.dismiss();
+                layout.closeDrawers();
+                type = typeSpin.getSelectedItem().toString();
+                order = orderSpin.getSelectedItem().toString();
+                reloadList("Organizing Data...", false);
             }
         });
 
