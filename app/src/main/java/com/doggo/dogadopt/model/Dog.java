@@ -164,9 +164,9 @@ public class Dog implements Serializable {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Dog {");
         sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
+        sb.append(", name=").append(name);
         sb.append(", photo='").append(photo).append('\'');
-        sb.append(", breed='").append(breed).append('\'');
+        sb.append(", breed=").append(breed);
         sb.append(", age=").append(age);
         sb.append(", date of arrival=").append(doa);
         sb.append(", personality=").append(personality);

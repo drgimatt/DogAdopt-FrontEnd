@@ -13,6 +13,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -34,6 +35,7 @@ import com.doggo.dogadopt.retrofit.QueryProcessor;
 import com.doggo.dogadopt.R;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -56,7 +58,6 @@ public class dashActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         reloadList("Reloading data...", true);
-
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,19 +97,14 @@ public class dashActivity extends AppCompatActivity {
 
         Menu menu = navigationView.getMenu();
         SubMenu sb = menu.addSubMenu("Administrative Functions");
-//        SpannableString test = new SpannableString("Administrative Functions");
-//        test.setSpan(new ForegroundColorSpan(Color.YELLOW),0, test.length(),0);
-//        sb.setHeaderTitle(test);
-//        TextView test = (TextView) sb.getItem();
-//        test.setTextColor(Color.YELLOW);
-
         sb.add("Add a Dog");
-        SubMenu sb2 = menu.addSubMenu("Testing purposes only");
+        SubMenu sb2 = menu.addSubMenu("List Manipulation");
         sb2.add("Sort List");
+        sb2.add("Search List");
+        sb2.add("Reload List");
         if (account.getRole().equals("USER")){
             sb.setGroupVisible(0,false);
         }
-        menu.add("Reload List");
         menu.add("View Requests");
         menu.add("FAQ");
         menu.add("Logout");
@@ -124,6 +120,9 @@ public class dashActivity extends AppCompatActivity {
                     }
                     else if(item.getTitle().equals("Sort List")){
                         showSortDialog();
+                    }
+                    else if (item.getTitle().equals("Search List")){
+                        showSearchDialog();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
                         layout.closeDrawers();
@@ -150,6 +149,49 @@ public class dashActivity extends AppCompatActivity {
 
     }
 
+    private void showSearchDialog(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.searchlist_dialog);
+        dialog.setCancelable(false);
+
+        EditText search = dialog.findViewById(R.id.searchBox);
+        Button searchBtn = dialog.findViewById(R.id.OKSearch);
+        Button cancelBtn = dialog.findViewById(R.id.CancelSearch);
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                layout.closeDrawers();
+                List<Dog> dogShow = searchDogs(dogList, search.getText().toString());
+                lView = (ListView) findViewById(R.id.dogList);
+                lAdapter = new DogListAdapter(dashActivity.this, dogShow.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                lView.setAdapter(lAdapter);
+
+            }
+        });
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    public List<Dog> searchDogs(List<Dog> unfilteredDogs, String query){
+        List<Dog> filteredDogs = new ArrayList<>();
+
+        for (Dog doggo : unfilteredDogs){
+            if (doggo.getName().toLowerCase().contains(query.toLowerCase())||
+                doggo.getBreed().toLowerCase().contains(query.toLowerCase())||
+                doggo.getStatus().toLowerCase().contains(query.toLowerCase())){
+                filteredDogs.add(doggo);
+            }
+        }
+        return filteredDogs;
+    }
+    
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -248,7 +290,6 @@ public class dashActivity extends AppCompatActivity {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.sortlist_dialog);
         dialog.setCancelable(false);
-        //dialog.getWindow().setBackgroundDrawable();
 
         Spinner orderSpin = dialog.findViewById(R.id.orderSort);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.UpDownSortSpin, android.R.layout.simple_spinner_item);
