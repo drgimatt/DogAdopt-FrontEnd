@@ -12,7 +12,7 @@
         android:layout_height="49dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="133dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="49dp"
         android:scaleX="3"
         android:scaleY="3"
         android:src="@drawable/update_header" />
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="97dp"
         android:orientation="vertical"
         android:weightSum="50">
 
