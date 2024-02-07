@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,11 @@ public class RequestListAdapter extends BaseAdapter {
         };
 
         viewHolder.rdogIDTxt.setText("Dog ID: " +Integer.toString(Math.toIntExact(requests[position].getDogId())));
+        if (requests[position].getReqStatus().equals("FOR REVIEW")){
+            viewHolder.reqStatusTxt.setTextColor(Color.RED);
+        }else {
+            viewHolder.reqStatusTxt.setTextColor(Color.parseColor("#539D7A"));
+        }
         viewHolder.reqStatusTxt.setText(requests[position].getReqStatus().replace("\"", ""));
 
         viewHolder.resolveRequest.setOnClickListener(new View.OnClickListener() {

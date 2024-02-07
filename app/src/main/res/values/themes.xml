@@ -3,6 +3,7 @@
     <style name="Base.Theme.DogAdopt" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">#539D7A</item>
+        <item name="colorPrimaryContainer">#539D7A</item>
     </style>
 
     <style name="Theme.DogAdopt" parent="Base.Theme.DogAdopt" />

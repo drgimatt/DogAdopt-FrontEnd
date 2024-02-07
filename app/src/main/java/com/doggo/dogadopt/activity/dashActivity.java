@@ -64,8 +64,6 @@ public class dashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
 
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("accountDetails");
         reloadList("Initializing data...", true);
