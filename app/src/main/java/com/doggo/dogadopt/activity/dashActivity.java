@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.SpannableString;
@@ -109,8 +110,8 @@ public class dashActivity extends AppCompatActivity {
         sb.add("Add a Dog");
         SubMenu sb2 = menu.addSubMenu("Testing purposes only");
         sb2.add("Sort List");
-        if (account.getRole().equals("ADMIN")){
-            sb.setGroupVisible(0,true);
+        if (account.getRole().equals("USER")){
+            sb.setGroupVisible(0,false);
         }
         menu.add("Reload List");
         menu.add("View Requests");
