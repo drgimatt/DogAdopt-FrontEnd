@@ -108,8 +108,6 @@ public class startupActivity extends AppCompatActivity {
                                 Intent i = new Intent(getApplicationContext(), dashActivity.class);
                                 i.putExtra("accountDetails",user);
                                 startActivity(i);
-                                username.setText("");
-                                password.setText("");
                                 finish();
                                 break;
                             } else {

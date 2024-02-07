@@ -65,7 +65,6 @@ public class addActivity extends AppCompatActivity {
         dogChoosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("HELLO", "Register Button Clicked");
                 imageChooser();
             }
         });
@@ -85,7 +84,7 @@ public class addActivity extends AppCompatActivity {
                     @Override
                     public void returnResult(Object obj) {
                         LoadingDialog progress = new LoadingDialog(addActivity.this);
-                        progress.startLoadingAnimation();
+                        progress.startLoadingAnimation("Submitting...");
                         if ((boolean) obj == true){
                             progress.dismissAnimation();
                             Toast.makeText(addActivity.this,"Dog addition is successful.", Toast.LENGTH_SHORT).show();

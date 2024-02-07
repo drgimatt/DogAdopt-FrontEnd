@@ -6,7 +6,15 @@
         <item>PROCESSING</item>
         <item>ADOPTED</item>
     </string-array>
-
+    <string-array name="TypeSortSpin">
+        <item>Name</item>
+        <item>Breed</item>
+        <item>Status</item>
+    </string-array>
+    <string-array name="UpDownSortSpin">
+        <item>Ascending</item>
+        <item>Descending</item>
+    </string-array>
     <string-array name="dogGenderSpin">
         <item>MALE</item>
         <item>FEMALE</item>

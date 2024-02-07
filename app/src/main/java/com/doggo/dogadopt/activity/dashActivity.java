@@ -1,6 +1,7 @@
 package com.doggo.dogadopt.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ public class dashActivity extends AppCompatActivity {
     ListAdapter lAdapter;
     List<Dog> dogList;
     QueryProcessor processor = new QueryProcessor();
+    LoadingDialog progress = new LoadingDialog(dashActivity.this);
     Account account;
     private ActionBarDrawerToggle toggle;
     private DrawerLayout layout;
@@ -48,30 +52,9 @@ public class dashActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        LoadingDialog progress = new LoadingDialog(dashActivity.this);
-        progress.startLoadingAnimation();
-        processor.DogReadAll();
-        processor.setCbs(new CallBack() {
-            @Override
-            public void returnResult(Object obj) {
-                dogList = (List<Dog>) obj;
-                Collections.sort(dogList, new Comparator<Dog>() {
-                    @Override
-                    public int compare(Dog o1, Dog o2) {
-                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
-                    }
-                });
-
-
-                lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
-                lView.setAdapter(lAdapter);
-                progress.dismissAnimation();
-            }
-        });
+        reloadList("Reloading data...");
 
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,30 +62,9 @@ public class dashActivity extends AppCompatActivity {
 
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        LoadingDialog progress = new LoadingDialog(dashActivity.this);
-        progress.startLoadingAnimation();
-
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("accountDetails");
-        processor.DogReadAll();
-        processor.setCbs(new CallBack() {
-            @Override
-            public void returnResult(Object obj) {
-                dogList = (List<Dog>) obj;
-                Collections.sort(dogList, new Comparator<Dog>() {
-                    @Override
-                    public int compare(Dog o1, Dog o2) {
-                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
-                    }
-                });
-
-
-                lView = (ListView) findViewById(R.id.dogList);
-                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
-                lView.setAdapter(lAdapter);
-                progress.dismissAnimation();
-            }
-        });
+        reloadList("Initializing data...");
 
         layout = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, layout,R.string.nav_open,R.string.nav_close);
@@ -120,6 +82,7 @@ public class dashActivity extends AppCompatActivity {
         TextView fullname = sideNavLayout.findViewById(R.id.fullname_menuLabel);
         TextView usertype = sideNavLayout.findViewById(R.id.usertype_menuLabel);
         fullname.setText(account.getFirstName() + " " + account.getLastName());
+
         if (account.getRole().equals("ADMIN")){
             usertype.setText("Administrator");
         } else if (account.getRole().equals("USER")){
@@ -127,7 +90,6 @@ public class dashActivity extends AppCompatActivity {
         } else {
             usertype.setText("UNKNOWN");
         }
-
 
         Menu menu = navigationView.getMenu();
         SubMenu sb = menu.addSubMenu("Administrative Functions");
@@ -142,8 +104,6 @@ public class dashActivity extends AppCompatActivity {
         menu.add("FAQ");
         menu.add("Logout");
 
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -153,6 +113,7 @@ public class dashActivity extends AppCompatActivity {
                     }
                     else if(item.getTitle().equals("Sort List")){
                         Toast.makeText(dashActivity.this,"Assume that we can sort lists.", Toast.LENGTH_SHORT).show();
+                        showSortDialog();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
                         layout.closeDrawers();
@@ -161,27 +122,7 @@ public class dashActivity extends AppCompatActivity {
                     }
                     else if (item.getTitle().equals("Reload List")){
                         layout.closeDrawers();
-                        LoadingDialog progress = new LoadingDialog(dashActivity.this);
-                        progress.startLoadingAnimation();
-                        processor.DogReadAll();
-                        processor.setCbs(new CallBack() {
-                            @Override
-                            public void returnResult(Object obj) {
-                                dogList = (List<Dog>) obj;
-                                Collections.sort(dogList, new Comparator<Dog>() {
-                                    @Override
-                                    public int compare(Dog o1, Dog o2) {
-                                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
-                                    }
-                                });
-
-
-                                lView = (ListView) findViewById(R.id.dogList);
-                                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
-                                lView.setAdapter(lAdapter);
-                                progress.dismissAnimation();
-                            }
-                        });
+                        reloadList("Reloading data...");
                     }
                     else if (item.getTitle().equals("Logout")){
                         layout.closeDrawers();
@@ -207,7 +148,7 @@ public class dashActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void triggerLogout(){
+    private void triggerLogout(){
         AlertDialog.Builder frameBuilder = new AlertDialog.Builder(this);
             frameBuilder.setCancelable(true);
             frameBuilder.setTitle("Logout");
@@ -230,5 +171,55 @@ public class dashActivity extends AppCompatActivity {
         dialog.show();
         layout.closeDrawers();
 }
+
+    private void reloadList(String text){
+        progress.startLoadingAnimation(text);
+        processor.DogReadAll();
+        processor.setCbs(new CallBack() {
+            @Override
+            public void returnResult(Object obj) {
+                dogList = (List<Dog>) obj;
+                Collections.sort(dogList, new Comparator<Dog>() {
+                    @Override
+                    public int compare(Dog o1, Dog o2) {
+                        return o1.getName().replace("\"", "").compareToIgnoreCase(o2.getName().replace("\"", ""));
+                    }
+                });
+                lView = (ListView) findViewById(R.id.dogList);
+                lAdapter = new ListAdapter(dashActivity.this, dogList.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
+                lView.setAdapter(lAdapter);
+                progress.dismissAnimation();
+            }
+        });
+    }
+
+    private void showSortDialog(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.sortlist_dialog);
+        dialog.setCancelable(false);
+        //dialog.getWindow().setBackgroundDrawable();
+
+        Spinner orderSpin = dialog.findViewById(R.id.orderSort);
+        Spinner typeSpin = dialog.findViewById(R.id.TypeSort);
+
+        Button sortBtn = dialog.findViewById(R.id.OKSort);
+        Button cancelBtn = dialog.findViewById(R.id.CancelSort);
+
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 
 }
