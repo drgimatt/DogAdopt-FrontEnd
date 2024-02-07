@@ -95,6 +95,8 @@ public class RequestListAdapter extends BaseAdapter {
         }
 
 
+
+
         for (Dog dog : dogs){
 
             String name ="";

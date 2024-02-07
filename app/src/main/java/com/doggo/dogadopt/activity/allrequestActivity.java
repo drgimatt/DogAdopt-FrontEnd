@@ -15,6 +15,7 @@ import com.doggo.dogadopt.model.Request;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class allrequestActivity extends AppCompatActivity{
@@ -48,7 +49,21 @@ public class allrequestActivity extends AppCompatActivity{
             public void returnResult(Object obj) {
                 dogList = (List<Dog>) obj;
                 lView = findViewById(R.id.requestList);
-                rListAdapter = new RequestListAdapter(allrequestActivity.this, requestList.toArray(new Request[0]), dogList.toArray(new Dog[0]), account);
+
+                List<Request> filteredRequests = new ArrayList<>();
+
+                if(account.getRole().equals("USER")){
+                    for (Request utos: requestList){
+                        if (utos.getUserId().equals(account.getMyId())){
+                            filteredRequests.add(utos);
+                        }
+                    }
+                }
+                else {
+                    filteredRequests = requestList;
+                }
+
+                rListAdapter = new RequestListAdapter(allrequestActivity.this, filteredRequests.toArray(new Request[0]), dogList.toArray(new Dog[0]), account);
                 lView.setAdapter(rListAdapter);
                 progress.dismissAnimation();
             }
