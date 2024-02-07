@@ -13,6 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+<<<<<<< HEAD
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_mainmenu"
         android:layout_width="match_parent"
@@ -28,18 +29,25 @@
         android:layout_marginTop="60dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/viewreq_header" />
+=======
+>>>>>>> parent of 1821e97 (update UI)
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical"
-
+        android:layout_marginTop="-5dp"
         android:weightSum="50">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/viewreq_header" />
 
         <ListView
-            android:layout_marginTop="140dp"
             android:id="@+id/requestList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

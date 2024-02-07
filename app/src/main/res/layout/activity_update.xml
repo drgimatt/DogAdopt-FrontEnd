@@ -40,7 +40,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+<<<<<<< HEAD
         android:layout_marginBottom="97dp"
+=======
+        android:layout_marginBottom="6dp"
+>>>>>>> parent of 1821e97 (update UI)
         android:orientation="vertical"
         android:weightSum="50">
 

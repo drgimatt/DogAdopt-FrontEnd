@@ -37,9 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="78dp"
+        android:layout_marginBottom="53dp"
         android:orientation="vertical"
+        android:layout_marginTop="50dp"
         android:weightSum="50">
 
 
