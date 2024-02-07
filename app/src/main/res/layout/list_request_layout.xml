@@ -6,33 +6,67 @@
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
+    android:gravity="center"
     android:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/dNameTxt"
-            android:layout_width="296dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:text="Request to Adopt Milo"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="215dp"
+            android:layout_height="87dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/reqStatusTxt"
-            android:layout_width="143dp"
+            <TextView
+                android:id="@+id/dNameTxt"
+                android:layout_width="209dp"
+                android:layout_height="16dp"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:text="Name"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dogIDTextTxt"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingBottom="2sp"
+                android:text="Dog ID"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:paddingBottom="2sp"
-            android:text="FOR REVIEW"
-            android:textSize="16sp" />
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+
+            <TextView
+                android:id="@+id/dStatusTxt"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingBottom="2sp"
+                android:text="STATUS"
+                android:backgroundTint="@color/btn_bg"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

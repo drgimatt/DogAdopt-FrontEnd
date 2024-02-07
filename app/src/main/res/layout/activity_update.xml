@@ -21,11 +21,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
         android:orientation="vertical"
         android:weightSum="50">
 
-      
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,8 +38,8 @@
 
             <ImageView
                 android:id="@+id/asoPhoto"
-                android:layout_width="109dp"
-                android:layout_height="107dp"
+                android:layout_width="99dp"
+                android:layout_height="92dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
                 android:background="@color/white"
@@ -48,7 +48,7 @@
 
             <Button
                 android:id="@+id/asoChoosePhoto"
-                android:layout_width="wrap_content"
+                android:layout_width="161dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
@@ -192,26 +192,6 @@
             android:backgroundTint="@color/btn_bg"
             android:text="Update Dog" />
 
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:background="#16603D"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <!-- Add your centered footer text here -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="© 2024 CityBarks Adoption"
-            android:textSize="14sp"
-            android:textColor="@android:color/white" /> <!-- Set text color as needed -->
-
-        <!-- Add more views as needed -->
 
     </LinearLayout>
 
