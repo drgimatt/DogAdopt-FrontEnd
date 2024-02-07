@@ -89,7 +89,7 @@ public class RequestListAdapter extends BaseAdapter {
 
         viewHolder.rdogIDTxt.setText("Dog ID: " +Integer.toString(Math.toIntExact(requests[position].getDogId())));
         if (requests[position].getReqStatus().equals("FOR REVIEW")){
-            viewHolder.reqStatusTxt.setTextColor(Color.RED);
+            viewHolder.reqStatusTxt.setTextColor(Color.parseColor("#6D737A"));
         }else {
             viewHolder.reqStatusTxt.setTextColor(Color.parseColor("#539D7A"));
         }

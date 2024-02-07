@@ -16,12 +16,8 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-<<<<<<< Updated upstream
             android:layout_height="147dp"
             android:layout_marginTop="-5dp"
-=======
-            android:layout_height="59dp"
->>>>>>> Stashed changes
             app:srcCompat="@drawable/upreq_header" />
 
         <LinearLayout

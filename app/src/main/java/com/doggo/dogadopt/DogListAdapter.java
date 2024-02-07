@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -78,7 +79,16 @@ public class DogListAdapter extends BaseAdapter {
 
         viewHolder.dNameTxt.setText(dogs[position].getName().replace("\"", ""));
         viewHolder.dBreedTxt.setText(dogs[position].getBreed().replace("\"", ""));
+
+        if (dogs[position].getStatus().equals("PROCESSING")){
+            viewHolder.dStatusTxt.setTextColor(Color.parseColor("#6D737A"));
+        }else if (dogs[position].getStatus().equals("ADOPTED")){
+            viewHolder.dStatusTxt.setTextColor(Color.parseColor("#2A7CD4"));
+        }else if (dogs[position].getStatus().equals("AVAILABLE")){
+            viewHolder.dStatusTxt.setTextColor(Color.parseColor("#539D7A"));
+        }
         viewHolder.dStatusTxt.setText(dogs[position].getStatus().replace("\"", ""));
+
         viewHolder.picture.setImageBitmap(
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeByteArray(dogs[position].getPhoto(), 0, dogs[position].getPhoto().length),
