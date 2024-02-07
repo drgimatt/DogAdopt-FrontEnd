@@ -112,16 +112,45 @@ public class updateActivity extends AppCompatActivity {
         deleteDog_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //implement delete here
+                // Call the deleteDog method to delete the dog
+                deleteDog(DogID);
             }
         });
 
         initializeParameters(DogID);
         // Optionally, set an initial date in the EditText
         updateDateInView();
-
-
     }
+
+    private void deleteDog(Long dogID) {
+        processor.DogRead(Math.toIntExact(dogID));
+        processor.setCbs(new CallBack() {
+            @Override
+            public void returnResult(Object obj) {
+                if (obj instanceof Dog) {
+                    Dog dog = (Dog) obj;
+                    if (dog != null) {
+                        // Dog with the given ID exists, proceed with deletion
+                        processor.deleteDog(dog.getId()); // Assuming you need to pass the ID of the dog to delete
+                        Toast.makeText(updateActivity.this, "Dog deleted successfully.", Toast.LENGTH_SHORT).show();
+                        finish(); // Optionally, close the activity after successful deletion
+                    } else {
+                        // Dog with the given ID doesn't exist
+                        Toast.makeText(updateActivity.this, "Dog does not exist.", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (obj instanceof Boolean) {
+                    boolean isSuccess = (Boolean) obj;
+                    if (!isSuccess) {
+                        // Deletion failed
+                        Toast.makeText(updateActivity.this, "Failed to delete dog.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+        });
+    }
+
+
 
     public void showDatePickerDialog(View view) {
         int year = calendar.get(Calendar.YEAR);
@@ -174,7 +203,7 @@ public class updateActivity extends AppCompatActivity {
         }
 
     }
-    private void initializeParameters(Long id){
+    private void initializeParameters(Long id) {
 
         processor.DogRead(Math.toIntExact(id));
 
@@ -196,7 +225,7 @@ public class updateActivity extends AppCompatActivity {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     DGender.setAdapter(adapter);
                     if (aso.getGender() != null) {
-                        Log.i("Gender","The gender is " + aso.getGender());
+                        Log.i("Gender", "The gender is " + aso.getGender());
                         int spinnerPosition = adapter.getPosition(aso.getGender().replace("\"", ""));
                         DGender.setSelection(spinnerPosition);
                     }
@@ -204,7 +233,7 @@ public class updateActivity extends AppCompatActivity {
                     adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     DStatus.setAdapter(adapter2);
                     if (aso.getStatus() != null) {
-                        Log.i("Status","The status is " + aso.getStatus());
+                        Log.i("Status", "The status is " + aso.getStatus());
                         int spinnerPosition = adapter2.getPosition(aso.getStatus().replace("\"", ""));
                         DStatus.setSelection(spinnerPosition);
                     }
@@ -223,7 +252,8 @@ public class updateActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
 }
+
+
+

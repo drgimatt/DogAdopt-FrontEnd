@@ -317,4 +317,28 @@ public class QueryProcessor {
     public void setCbs(CallBack cbs) {
         this.cbs = cbs;
     }
+
+    public void deleteDog(long dogId) {
+        dogApi.deleteDog(dogId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Log.i("Success", "Dog deleted successfully");
+                    cbs.returnResult(true);
+                } else {
+                    Log.e("Failure", "Failed to delete dog");
+                    cbs.returnResult(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("Failure", "Failed to delete dog", t);
+                cbs.returnResult(false);
+            }
+        });
+    }
+
+
 }
+

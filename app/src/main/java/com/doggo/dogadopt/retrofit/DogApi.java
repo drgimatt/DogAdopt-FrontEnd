@@ -50,7 +50,7 @@ public interface DogApi {
                      @Part("gender") RequestBody gender);
 
     @DELETE("/api/delete-dog/{id}")
-    Call<Dog> deleteDog(@Path("id") int id);
+    Call<Void> deleteDog(@Path("id") long id);
 
 
 }
