@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
@@ -113,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:text="Requested by"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -125,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginBottom="10dp"
                 android:textAlignment="center">
 
@@ -143,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:text="Contact Number"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -155,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginBottom="10dp"
                 android:textAlignment="center">
 
@@ -174,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:text="Message"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -203,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:text="Status"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -233,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="150dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/btn_bg"
                 android:text="Resolve Request" />
