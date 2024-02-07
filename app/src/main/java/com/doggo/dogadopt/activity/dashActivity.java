@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -124,7 +125,6 @@ public class dashActivity extends AppCompatActivity {
                         Toast.makeText(dashActivity.this,"Assume that there is a view request function", Toast.LENGTH_SHORT).show();
                     }
                     else if(item.getTitle().equals("Sort List")){
-                        Toast.makeText(dashActivity.this,"Assume that we can sort lists.", Toast.LENGTH_SHORT).show();
                         showSortDialog();
                     }
                     else if(item.getTitle().equals("Add a Dog")){
@@ -253,8 +253,15 @@ public class dashActivity extends AppCompatActivity {
         //dialog.getWindow().setBackgroundDrawable();
 
         Spinner orderSpin = dialog.findViewById(R.id.orderSort);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.UpDownSortSpin, android.R.layout.simple_spinner_item);
+        orderSpin.setAdapter(adapter);
+        int spinnerPosition = adapter.getPosition(order);
+        orderSpin.setSelection(spinnerPosition);
         Spinner typeSpin = dialog.findViewById(R.id.TypeSort);
-
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.TypeSortSpin, android.R.layout.simple_spinner_item);
+        typeSpin.setAdapter(adapter2);
+        int spinnerPosition2 = adapter2.getPosition(type);
+        typeSpin.setSelection(spinnerPosition2);
         Button sortBtn = dialog.findViewById(R.id.OKSort);
         Button cancelBtn = dialog.findViewById(R.id.CancelSort);
 
