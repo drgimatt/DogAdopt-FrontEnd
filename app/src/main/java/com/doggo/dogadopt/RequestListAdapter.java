@@ -56,17 +56,6 @@ public class RequestListAdapter extends BaseAdapter {
         return position;
     }
 
-    public List<Request> searchRequests(List<Request> unfilteredRequests, Long query){
-        List<Request> filteredRequests = new ArrayList<>();
-
-        for (Request utos: unfilteredRequests){
-            if (utos.getUserId().equals(query)){
-                filteredRequests.add(utos);
-            }
-        }
-        return filteredRequests;
-    }
-
     @NotNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -94,7 +83,9 @@ public class RequestListAdapter extends BaseAdapter {
             result = convertView;
         }
 
-
+        if(account.getRole().equals("USER")){
+            viewHolder.resolveRequest.setVisibility(View.GONE);
+        }
 
 
         for (Dog dog : dogs){
