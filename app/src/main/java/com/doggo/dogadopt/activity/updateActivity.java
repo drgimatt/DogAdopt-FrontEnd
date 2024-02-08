@@ -1,7 +1,9 @@
 package com.doggo.dogadopt.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -113,7 +115,19 @@ public class updateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Call the deleteDog method to delete the dog
-                deleteDog(DogID);
+
+                new AlertDialog.Builder(updateActivity.this)
+                        .setTitle("Delete Dog")
+                        .setMessage("Do you want to delete this entry?")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteDog(DogID);
+                            }
+                        }
+                        ).setNegativeButton("Cancel", null)
+                        .show();
+
             }
         });
 

@@ -1,6 +1,8 @@
 package com.doggo.dogadopt.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -88,6 +90,20 @@ public class allrequestActivity extends AppCompatActivity{
                 rListAdapter = new RequestListAdapter(allrequestActivity.this, filteredRequests.toArray(new Request[0]), dogList.toArray(new Dog[0]), account);
                 lView.setAdapter(rListAdapter);
                 progress.dismissAnimation();
+
+                if (filteredRequests.isEmpty()){
+                    new AlertDialog.Builder(allrequestActivity.this)
+                            .setTitle("Empty Request List")
+                            .setMessage("There are no requests made. Please create one first.")
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .show();
+                }
+
             }
         });
     }
