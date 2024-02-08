@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -105,7 +108,20 @@ public class dashActivity extends AppCompatActivity {
         }
         menu.add("View Requests");
         menu.add("FAQ");
+        MenuItem test =  sb2.getItem();
         menu.add("Logout");
+
+        TextAppearanceSpan faqTextAppearanceSpan = new TextAppearanceSpan(this, R.style.PseudoStyle);
+        SpannableString span = new SpannableString(test.getTitle());
+        span.setSpan(faqTextAppearanceSpan,0,span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        test.setTitle(span);
+
+
+        MenuItem test2 = sb.getItem();
+        SpannableString span2 = new SpannableString(test2.getTitle());
+        span2.setSpan(faqTextAppearanceSpan,0,span2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        test2.setTitle(span2);
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
