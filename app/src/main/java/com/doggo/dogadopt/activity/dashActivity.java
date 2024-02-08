@@ -198,6 +198,16 @@ public class dashActivity extends AppCompatActivity {
                 dialog.dismiss();
                 layout.closeDrawers();
                 List<Dog> dogShow = searchDogs(dogList, search.getText().toString());
+
+                if(dogShow.isEmpty()){
+                    new AlertDialog.Builder(dashActivity.this)
+                        .setTitle("Empty Search Result")
+                        .setMessage("No results found.")
+                        .setPositiveButton("Ok", null)
+                        .show();
+                dogShow = dogList;
+                }
+
                 lView = (ListView) findViewById(R.id.dogList);
                 lAdapter = new DogListAdapter(dashActivity.this, dogShow.toArray(new Dog[0]),account.getRole().replace("\"", ""),account.getMyId());
                 lView.setAdapter(lAdapter);
