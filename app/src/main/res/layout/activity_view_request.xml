@@ -1,30 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <LinearLayout
+    <!-- ImageView fixed at the top -->
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
+        android:layout_height="146dp"
         android:layout_marginTop="-5dp"
-        android:weightSum="50">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/viewreq_header" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="146dp"
-            android:layout_marginTop="-2dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/viewreq_header" />
-
-        <ListView
-            android:id="@+id/requestList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
+    <!-- ListView below the ImageView -->
+    <ListView
+        android:id="@+id/requestList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imageView" />
 
 </RelativeLayout>
