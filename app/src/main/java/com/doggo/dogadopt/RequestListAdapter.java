@@ -1,5 +1,6 @@
 package com.doggo.dogadopt;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,7 +32,7 @@ public class RequestListAdapter extends BaseAdapter {
     Context context;
     private Request[] requests;
     private Dog[] dogs;
-
+    private int LAUNCH_SECOND_ACTIVITY = 1;
     private Account account;
 
     public RequestListAdapter(Context context, Request[] requests, Dog[] dogs, Account account) {
@@ -111,7 +112,8 @@ public class RequestListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent i = new Intent(context.getApplicationContext(), resolvereqActivity.class);
                 i.putExtra("reqId",requests[position].getReqId());
-                context.startActivity(i);
+                ((Activity) context).startActivityForResult(i,LAUNCH_SECOND_ACTIVITY);
+                //context.startActivity(i);
             }
         });
 

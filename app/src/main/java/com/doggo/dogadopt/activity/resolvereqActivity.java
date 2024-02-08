@@ -2,6 +2,7 @@ package com.doggo.dogadopt.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -73,6 +74,8 @@ public class resolvereqActivity extends AppCompatActivity {
                         progress.dismissAnimation();
                         if (isSuccessful){
                             Toast.makeText(resolvereqActivity.this,"Update successful.", Toast.LENGTH_SHORT).show();
+                            Intent returnIntent = new Intent();
+                            setResult(Activity.RESULT_OK, returnIntent);
                             finish();
                         } else{
                             Toast.makeText(resolvereqActivity.this,"Update not successful. Please try again.", Toast.LENGTH_SHORT).show();

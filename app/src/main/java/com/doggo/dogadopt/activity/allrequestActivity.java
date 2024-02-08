@@ -1,5 +1,6 @@
 package com.doggo.dogadopt.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -27,7 +28,24 @@ public class allrequestActivity extends AppCompatActivity{
     Account account;
     QueryProcessor processor = new QueryProcessor();
     LoadingDialog progress = new LoadingDialog(allrequestActivity.this);
+    int LAUNCH_SECOND_ACTIVITY = 1;
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY){
+            if(resultCode == Activity.RESULT_OK){
+                progress.startLoadingAnimation("Reloading data...");
+                generateList();
+            }
+            if (resultCode == Activity.RESULT_CANCELED){
+                //reloadList("Reloading data...", false);
+            }
+        }
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +53,10 @@ public class allrequestActivity extends AppCompatActivity{
         Intent intent = getIntent();
         account = (Account) intent.getSerializableExtra("account");
         progress.startLoadingAnimation("Initializing data...");
+        generateList();
+    }
+
+    private void generateList(){
         processor.RequestReadAll();
         processor.setCbs(new CallBack() {
             @Override
@@ -69,6 +91,5 @@ public class allrequestActivity extends AppCompatActivity{
             }
         });
     }
-
 
 }

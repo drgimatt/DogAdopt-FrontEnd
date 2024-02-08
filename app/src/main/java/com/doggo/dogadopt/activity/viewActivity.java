@@ -2,10 +2,12 @@ package com.doggo.dogadopt.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +41,22 @@ public class viewActivity extends AppCompatActivity {
     Account account = new Account();
     Request request = new Request();
     QueryProcessor processor = new QueryProcessor();
+    int LAUNCH_SECOND_ACTIVITY = 1;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY){
+            if(resultCode == Activity.RESULT_OK){
+                finish();
+            }
+            if (resultCode == Activity.RESULT_CANCELED){
+                //reloadList("Reloading data...", false);
+            }
+        }
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +84,10 @@ public class viewActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), requestActivity.class);
                 i.putExtra("userID",userID);
                 i.putExtra("dogID",DogID);
-                startActivity(i);
+                startActivityForResult(i,LAUNCH_SECOND_ACTIVITY);
             }
         });
+
     }
 
 
@@ -100,6 +119,9 @@ public class viewActivity extends AppCompatActivity {
                             )
                     );
 
+                }
+                if(DStatus.getText().toString().replace("\"", "").equals("ADOPTED")){
+                    requestDog_button.setEnabled(false);
                 }
                 progress.dismissAnimation();
             }

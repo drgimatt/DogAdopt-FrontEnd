@@ -1,5 +1,6 @@
 package com.doggo.dogadopt.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -56,12 +57,30 @@ public class dashActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private DrawerLayout layout;
     private Toolbar toolbar;
+    int LAUNCH_SECOND_ACTIVITY = 1;
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        reloadList("Reloading data...", true);
+        //reloadList("Reloading data...", true);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY){
+            if(resultCode == Activity.RESULT_OK){
+                reloadList("Reloading data...", true);
+            }
+            if (resultCode == Activity.RESULT_CANCELED){
+                reloadList("Reloading data...", false);
+            }
+        }
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +161,7 @@ public class dashActivity extends AppCompatActivity {
                     else if(item.getTitle().equals("Add a Dog")){
                         layout.closeDrawers();
                         Intent i = new Intent(getApplicationContext(), addActivity.class);
-                        startActivity(i);
+                        startActivityForResult(i,LAUNCH_SECOND_ACTIVITY);
                     }
                     else if (item.getTitle().equals("Reload List")){
                         layout.closeDrawers();

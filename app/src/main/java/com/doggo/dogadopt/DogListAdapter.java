@@ -1,5 +1,6 @@
 package com.doggo.dogadopt;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,6 +28,7 @@ public class DogListAdapter extends BaseAdapter {
 
     private String userType;
     private Long userID;
+    private int LAUNCH_SECOND_ACTIVITY = 1;
 
     public DogListAdapter(Context context, Dog[] dogs, String userType, Long userID) {
         this.context = context;
@@ -49,6 +51,7 @@ public class DogListAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
 
     @NotNull
     @Override
@@ -81,7 +84,7 @@ public class DogListAdapter extends BaseAdapter {
         viewHolder.dNameTxt.setText(dogs[position].getName().replace("\"", ""));
         viewHolder.dBreedTxt.setText(dogs[position].getBreed().replace("\"", ""));
 
-        Log.d("Info","The status is: " + dogs[position].getStatus());
+        //Log.d("Info","The status is: " + dogs[position].getStatus());
         if (dogs[position].getStatus().replace("\"", "").equals("PROCESSING")){
             viewHolder.dStatusTxt.setTextColor(Color.parseColor("#6D737A"));
         }else if (dogs[position].getStatus().replace("\"", "").equals("ADOPTED")){
@@ -116,12 +119,14 @@ public class DogListAdapter extends BaseAdapter {
                 }
                 i.putExtra("dogID",dogs[position].getId());
                 i.putExtra("userID",userID);
-                context.startActivity(i);
+                ((Activity) context).startActivityForResult(i,LAUNCH_SECOND_ACTIVITY);
+                //context.startActivity(i);
             }
         });
 
         return convertView;
     }
+
 
     private class ViewHolder {
 

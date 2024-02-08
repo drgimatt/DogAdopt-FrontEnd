@@ -2,6 +2,7 @@ package com.doggo.dogadopt.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -88,6 +89,8 @@ public class addActivity extends AppCompatActivity {
                         if ((boolean) obj == true){
                             progress.dismissAnimation();
                             Toast.makeText(addActivity.this,"Dog addition is successful.", Toast.LENGTH_SHORT).show();
+                            Intent returnIntent = new Intent();
+                            setResult(Activity.RESULT_OK,returnIntent);
                             finish();
                         } else if ((boolean) obj == false){
                             progress.dismissAnimation();

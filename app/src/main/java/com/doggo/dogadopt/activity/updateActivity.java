@@ -1,5 +1,6 @@
 package com.doggo.dogadopt.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -54,8 +55,8 @@ public class updateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-
-
+        LoadingDialog progress = new LoadingDialog(updateActivity.this);
+        progress.startLoadingAnimation("Populating fields...");
         Intent intent = getIntent();
         DogID = intent.getLongExtra("dogID",0);
 
@@ -93,19 +94,18 @@ public class updateActivity extends AppCompatActivity {
                 processor.setCbs(new CallBack() {
                     @Override
                     public void returnResult(Object obj) {
-                        LoadingDialog progress = new LoadingDialog(updateActivity.this);
-                        progress.startLoadingAnimation();
                         boolean isSuccessful = (boolean) obj;
-                        progress.dismissAnimation();
+
                         if (isSuccessful){
                             Toast.makeText(updateActivity.this,"Update successful.", Toast.LENGTH_SHORT).show();
+                            Intent returnIntent = new Intent();
+                            setResult(Activity.RESULT_OK, returnIntent);
                             finish();
                         } else{
                             Toast.makeText(updateActivity.this,"Update not successful. Please try again.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
             }
         });
 
@@ -120,6 +120,7 @@ public class updateActivity extends AppCompatActivity {
         initializeParameters(DogID);
         // Optionally, set an initial date in the EditText
         updateDateInView();
+        progress.dismissAnimation();
     }
 
     private void deleteDog(Long dogID) {
@@ -133,6 +134,8 @@ public class updateActivity extends AppCompatActivity {
                         // Dog with the given ID exists, proceed with deletion
                         processor.deleteDog(dog.getId()); // Assuming you need to pass the ID of the dog to delete
                         Toast.makeText(updateActivity.this, "Dog deleted successfully.", Toast.LENGTH_SHORT).show();
+                        Intent returnIntent = new Intent();
+                        setResult(Activity.RESULT_OK, returnIntent);
                         finish(); // Optionally, close the activity after successful deletion
                     } else {
                         // Dog with the given ID doesn't exist
@@ -210,8 +213,7 @@ public class updateActivity extends AppCompatActivity {
         processor.setCbs(new CallBack() {
             @Override
             public void returnResult(Object obj) {
-                LoadingDialog progress = new LoadingDialog(updateActivity.this);
-                progress.startLoadingAnimation();
+
                 Dog aso = (Dog) obj;
                 if (aso != null) {
                     Log.i("Information", "umabot siya dito");
@@ -248,10 +250,11 @@ public class updateActivity extends AppCompatActivity {
                     );
 
                 }
-                progress.dismissAnimation();
+
             }
 
         });
+
     }
 }
 
