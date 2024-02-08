@@ -120,7 +120,7 @@
                     android:layout_width="138dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:hint="Age"
+                    android:hint="Age (in months)"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
