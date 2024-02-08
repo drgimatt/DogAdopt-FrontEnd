@@ -51,7 +51,6 @@ public class viewActivity extends AppCompatActivity {
                 finish();
             }
             if (resultCode == Activity.RESULT_CANCELED){
-                //reloadList("Reloading data...", false);
             }
         }
 
@@ -81,10 +80,15 @@ public class viewActivity extends AppCompatActivity {
         requestDog_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), requestActivity.class);
-                i.putExtra("userID",userID);
-                i.putExtra("dogID",DogID);
-                startActivityForResult(i,LAUNCH_SECOND_ACTIVITY);
+                if(DStatus.getText().toString().replace("\"", "").equals("ADOPTED")){
+                    finish();
+                } else {
+                    Intent i = new Intent(getApplicationContext(), requestActivity.class);
+                    i.putExtra("userID",userID);
+                    i.putExtra("dogID",DogID);
+                    startActivityForResult(i,LAUNCH_SECOND_ACTIVITY);
+                }
+
             }
         });
 
@@ -121,7 +125,7 @@ public class viewActivity extends AppCompatActivity {
 
                 }
                 if(DStatus.getText().toString().replace("\"", "").equals("ADOPTED")){
-                    requestDog_button.setEnabled(false);
+                    requestDog_button.setText("Return");
                 }
                 progress.dismissAnimation();
             }

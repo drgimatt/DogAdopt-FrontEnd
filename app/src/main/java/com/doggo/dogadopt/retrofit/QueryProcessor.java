@@ -16,6 +16,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class QueryProcessor {
 
@@ -25,10 +26,10 @@ public class QueryProcessor {
     List<Account> accountList = new ArrayList<>();
     List<Dog> dogList = new ArrayList<>();
     List<Request> requestList = new ArrayList<>();
-    RetrofitService retrofitService = new RetrofitService();
-    AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
-    DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
-    RequestApi requestApi = retrofitService.getRetrofit().create(RequestApi.class);
+    Retrofit retrofit = RetrofitService.getInstance();
+    AccountApi accountApi = retrofit.create(AccountApi.class);
+    DogApi dogApi = retrofit.create(DogApi.class);
+    RequestApi requestApi = retrofit.create(RequestApi.class);
     CallBack cbs;
 
     public void DogAdd(byte[] photoBytes, String name, String breed, String age, String doa, String personality, String status, String gender){

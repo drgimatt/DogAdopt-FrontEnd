@@ -27,8 +27,7 @@ public class RetrofitService {
     private Retrofit retrofit;
     private static final String BASE_URL = "http://192.168.1.50:8080";
 
-
-    public RetrofitService(){
+    private RetrofitService(){
         initializeRetrofit();
     }
 
@@ -36,8 +35,9 @@ public class RetrofitService {
 
         OkHttpClient connection = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES)
                 .build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -47,9 +47,18 @@ public class RetrofitService {
 
     }
 
-    public Retrofit getRetrofit(){
-        return retrofit;
+//    public Retrofit getRetrofit(){
+//        return retrofit;
+//    }
+
+    public static synchronized Retrofit getInstance(){
+        if (instance == null){
+            instance = new RetrofitService();
+        }
+        return instance.retrofit;
     }
+
+    private static volatile RetrofitService instance;
 
     private Gson customGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();

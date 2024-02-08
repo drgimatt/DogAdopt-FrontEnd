@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.doggo.dogadopt.LoadingDialog;
 import com.doggo.dogadopt.model.Account;
 import com.doggo.dogadopt.retrofit.CallBack;
 import com.doggo.dogadopt.retrofit.QueryProcessor;
@@ -101,6 +102,8 @@ public class startupActivity extends AppCompatActivity {
         }
 
         private void checkAccount(String uname, String pssword, SharedPreferences sharedPref){
+            LoadingDialog progress = new LoadingDialog(startupActivity.this);
+            progress.startLoadingAnimation("Logging in...");
             hasCorrectCredentials = false;
             queryProcessor = new QueryProcessor();
             queryProcessor.AccountReadAll();
@@ -130,6 +133,7 @@ public class startupActivity extends AppCompatActivity {
                             }
                             if (user.getRole().equals("ADMIN") || acc.getRole().equals("USER")){
                                 hasCorrectCredentials = true;
+                                progress.dismissAnimation();
                                 Toast.makeText(startupActivity.this,"Login successful.", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), dashActivity.class);
                                 i.putExtra("accountDetails",user);
@@ -137,11 +141,13 @@ public class startupActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             } else {
+                                progress.dismissAnimation();
                                 Toast.makeText(startupActivity.this,"Unsupported Account Type! Please use different account.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                     if (hasCorrectCredentials == false){
+                        progress.dismissAnimation();
                         Toast.makeText(startupActivity.this,"Incorrect credentials. Please try again", Toast.LENGTH_SHORT).show();
                     }
                 }
